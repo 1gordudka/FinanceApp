@@ -58,26 +58,33 @@ fun AppContent(
         navController.currentBackStackEntryAsState().value?.destination?.parent?.route
 
     val shouldShowBottomBar =
-        featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute } || currentDestinationParentRoute == null
+        featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute } || currentDestinationParentRoute == null && currentDestinationRoute != "splash"
 
     val notFABRoutes = listOf("settings_feature_navigation_route", "articles_feature_navigation_route")
 
     val shouldShowFAB =
-        featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute && currentDestinationParentRoute !in notFABRoutes } || currentDestinationParentRoute == null
+        featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute && currentDestinationParentRoute !in notFABRoutes } || currentDestinationParentRoute == null && currentDestinationRoute != "splash"
 
     Scaffold(
         bottomBar = {
-            AnimatedVisibility(
-                visible = shouldShowBottomBar,
-                enter = slideInVertically(),
-                exit = slideOutVertically()
-            ) {
+            if (shouldShowBottomBar){
                 BottomBar(
                     navController = navController,
                     currentDestinationParentRoute = currentDestinationParentRoute,
                     items = bottomBarItems
                 )
             }
+//            AnimatedVisibility(
+//                visible = shouldShowBottomBar,
+//                enter = slideInVertically(),
+//                exit = slideOutVertically()
+//            ) {
+//                BottomBar(
+//                    navController = navController,
+//                    currentDestinationParentRoute = currentDestinationParentRoute,
+//                    items = bottomBarItems
+//                )
+//            }
         },
         floatingActionButton = {
             if (shouldShowFAB) {
