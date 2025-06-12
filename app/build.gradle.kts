@@ -1,17 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.compose.compiler)
+    kotlin("kapt")
 }
 
 android {
-    namespace = "com.financeapp"
-    compileSdk = 35
+    namespace = Config.namespace
+    compileSdk = Config.compileSdk
 
     defaultConfig {
-        applicationId = "com.financeapp"
-        minSdk = 26
-        targetSdk = 35
+        applicationId = Config.applicationId
+        minSdk = Config.minSdk
+        targetSdk = Config.targetSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -31,6 +32,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+    }
+
     kotlinOptions {
         jvmTarget = "11"
     }
@@ -41,19 +46,57 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    // Modules
+    implementation(project(Modules.commonUi))
+    implementation(project(Modules.commonNavigation))
+
+    implementation(project(Modules.featuresIncomeData))
+    implementation(project(Modules.featuresIncomePresentation))
+    implementation(project(Modules.featuresIncomeDomain))
+
+    implementation(project(Modules.featuresOutcomeData))
+    implementation(project(Modules.featuresOutcomePresentation))
+    implementation(project(Modules.featuresOutcomeDomain))
+
+    implementation(project(Modules.featuresBreefData))
+    implementation(project(Modules.featuresBreefPresentation))
+    implementation(project(Modules.featuresBreefDomain))
+
+    implementation(project(Modules.featuresArticlesData))
+    implementation(project(Modules.featuresArticlesPresentation))
+    implementation(project(Modules.featuresArticlesDomain))
+
+    implementation(project(Modules.featuresSettingsData))
+    implementation(project(Modules.featuresSettingsPresentation))
+    implementation(project(Modules.featuresSettingsDomain))
+
+    // Lifecycle
+    implementation(libs.lifecycle.core)
+    implementation(libs.lifecycle.runtime)
+    implementation(libs.compose.activity)
+
+    // Compose
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.ui)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.compose.tooling.preview)
+    implementation(libs.compose.navigation)
+
+    // Testing
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.android.junit)
+    androidTestImplementation(libs.espresso)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.junit)
+    debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(libs.compose.test.manifest)
+
+    // Dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+}
+
+kapt{
+    correctErrorTypes = true
 }

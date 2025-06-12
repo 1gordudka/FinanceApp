@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="articles_route">Статьи</string>
+    <string name="articles_top_bar">Мои статьи</string>
+</resources>

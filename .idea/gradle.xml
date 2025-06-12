@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/buildSrc" name="buildSrc">
+                <projects>
+                  <project path="$PROJECT_DIR$/buildSrc" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
@@ -10,6 +22,31 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/common/navigation" />
+            <option value="$PROJECT_DIR$/common/ui" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/articles" />
+            <option value="$PROJECT_DIR$/features/articles/data" />
+            <option value="$PROJECT_DIR$/features/articles/domain" />
+            <option value="$PROJECT_DIR$/features/articles/presentation" />
+            <option value="$PROJECT_DIR$/features/breef" />
+            <option value="$PROJECT_DIR$/features/breef/data" />
+            <option value="$PROJECT_DIR$/features/breef/domain" />
+            <option value="$PROJECT_DIR$/features/breef/presentation" />
+            <option value="$PROJECT_DIR$/features/income" />
+            <option value="$PROJECT_DIR$/features/income/data" />
+            <option value="$PROJECT_DIR$/features/income/domain" />
+            <option value="$PROJECT_DIR$/features/income/presentation" />
+            <option value="$PROJECT_DIR$/features/outcome" />
+            <option value="$PROJECT_DIR$/features/outcome/data" />
+            <option value="$PROJECT_DIR$/features/outcome/domain" />
+            <option value="$PROJECT_DIR$/features/outcome/presentation" />
+            <option value="$PROJECT_DIR$/features/settings" />
+            <option value="$PROJECT_DIR$/features/settings/data" />
+            <option value="$PROJECT_DIR$/features/settings/domain" />
+            <option value="$PROJECT_DIR$/features/settings/presentation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
