@@ -13,7 +13,7 @@ import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainS
 
 @Composable
 fun OutcomeMainScreenContentState(
-    categories: List<OutcomeCategory.OutcomeCategoryLead>,
+    categories: List<OutcomeCategory>,
     allOutcome: AllOutcome,
     onAction: (OutcomeMainScreenAction) -> Unit
 ) {
@@ -23,7 +23,8 @@ fun OutcomeMainScreenContentState(
         item {
             GrayDivider()
         }
-        items(categories) {
+        items(categories,
+            key = { it.id }) {
             CategoryCard(
                 categoryName = it.categoryName,
                 categoryAmount = it.formattedAmount,

@@ -18,7 +18,7 @@ import com.finance.common.ui.components.GrayDivider
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ArticlesMainScreenContentState(
-    articles: List<ArticleCategory.ArticleCategoryLead>,
+    articles: List<ArticleCategory>,
     onAction: (ArticlesMainScreenAction) -> Unit
 ) {
 

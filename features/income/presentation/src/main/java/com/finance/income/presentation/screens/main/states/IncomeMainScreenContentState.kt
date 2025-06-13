@@ -11,7 +11,7 @@ import com.finance.common.ui.components.FeatureTopBar
 import com.finance.common.ui.components.GrayDivider
 import com.finance.common.ui.theme.FinanceAppTheme
 import com.finance.income.domain.models.AllIncome
-import com.finance.income.domain.models.IncomeCategoryListItem
+import com.finance.income.domain.models.IncomeCategory
 import com.finance.income.presentation.R
 import com.finance.income.presentation.screens.main.components.AmountCard
 import com.finance.income.presentation.screens.main.components.CategoryCard
@@ -20,7 +20,7 @@ import com.finance.income.presentation.screens.main.state_hoisting.IncomeMainScr
 
 @Composable
 fun IncomeMainScreenContentState(
-    categories: List<IncomeCategoryListItem.IncomeCategoryLead>,
+    categories: List<IncomeCategory>,
     allIncome: AllIncome,
     onAction: (IncomeMainScreenAction) -> Unit
 ) {
@@ -30,7 +30,7 @@ fun IncomeMainScreenContentState(
         item {
             GrayDivider()
         }
-        items(categories){
+        items(categories, key = { it.id }) {
             CategoryCard(
                 categoryName = it.categoryName,
                 categoryAmount = it.formattedAmount,

@@ -3,35 +3,43 @@ package com.finance.articles.data.mock
 import com.finance.articles.domain.models.ArticleCategory
 
 val allArticles = listOf(
-    ArticleCategory.ArticleCategoryLead(
+    ArticleCategory(
+        id = 1,
         emoji = "🏡",
         name = "Аренда квартиры"
     ),
-    ArticleCategory.ArticleCategoryLead(
+    ArticleCategory(
+        id = 2,
         emoji = "👕",
         name = "Одежда"
     ),
-    ArticleCategory.ArticleCategoryLead(
+    ArticleCategory(
+        id = 3,
         emoji = "🐶",
         name = "На собачку"
     ),
-    ArticleCategory.ArticleCategoryLead(
+    ArticleCategory(
+        id = 4,
         emoji = "🐶",
         name = "На собачку"
     ),
-    ArticleCategory.ArticleCategoryLead(
+    ArticleCategory(
+        id = 5,
         emoji = "РК",
         name = "Ремонт квартиры"
     ),
-    ArticleCategory.ArticleCategoryLead(
+    ArticleCategory(
+        id = 6,
         emoji = "🍭",
         name = "Продукты"
     ),
-    ArticleCategory.ArticleCategoryLead(
+    ArticleCategory(
+        id = 7,
         emoji = "🏋️‍♂️",
         name = "Спортзал"
     ),
-    ArticleCategory.ArticleCategoryLead(
+    ArticleCategory(
+        id = 8,
         emoji = "💊",
         name = "Медицина"
     )

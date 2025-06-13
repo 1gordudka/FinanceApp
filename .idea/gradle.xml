@@ -31,10 +31,10 @@
             <option value="$PROJECT_DIR$/features/articles/data" />
             <option value="$PROJECT_DIR$/features/articles/domain" />
             <option value="$PROJECT_DIR$/features/articles/presentation" />
-            <option value="$PROJECT_DIR$/features/breef" />
-            <option value="$PROJECT_DIR$/features/breef/data" />
-            <option value="$PROJECT_DIR$/features/breef/domain" />
-            <option value="$PROJECT_DIR$/features/breef/presentation" />
+            <option value="$PROJECT_DIR$/features/brief" />
+            <option value="$PROJECT_DIR$/features/brief/data" />
+            <option value="$PROJECT_DIR$/features/brief/domain" />
+            <option value="$PROJECT_DIR$/features/brief/presentation" />
             <option value="$PROJECT_DIR$/features/income" />
             <option value="$PROJECT_DIR$/features/income/data" />
             <option value="$PROJECT_DIR$/features/income/domain" />

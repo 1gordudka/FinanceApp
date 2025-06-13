@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.finance.common.ui.components.ListItem
 import com.finance.common.ui.theme.FinanceAppTheme
 
 @Composable
@@ -28,20 +29,19 @@ fun ArticleCategoryCard(
     onClick: () -> Unit
 ) {
 
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .height(70.dp)
-            .background(FinanceAppTheme.colors.background)
-            .clickable { onClick() }
-            .padding(vertical = 22.dp, horizontal = 16.dp)
-    ) {
-        Box(Modifier.size(24.dp).clip(CircleShape).background(FinanceAppTheme.colors.lightPrimary)){
-            Text(emoji, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.align(
-                Alignment.Center))
-        }
-        Spacer(Modifier.width(16.dp))
-        Text(name, style = MaterialTheme.typography.bodyLarge)
-    }
+    ListItem(
+        content = {
+            Text(name, style = MaterialTheme.typography.bodyLarge)
+        },
+        lead = {
+            Box(Modifier.size(24.dp).clip(CircleShape).background(FinanceAppTheme.colors.lightPrimary)){
+                Text(emoji, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.align(
+                    Alignment.Center))
+            }
+        },
+        onClick = onClick,
+        modifier = Modifier.height(70.dp)
+    )
+
 
 }

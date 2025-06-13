@@ -5,7 +5,7 @@ import com.finance.articles.domain.models.ArticleCategory
 sealed class ArticlesMainScreenState {
 
     data class Content(
-        val articles: List<ArticleCategory.ArticleCategoryLead>
+        val articles: List<ArticleCategory>
     ) : ArticlesMainScreenState()
 
     data object Loading : ArticlesMainScreenState()

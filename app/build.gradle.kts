@@ -58,9 +58,9 @@ dependencies {
     implementation(project(Modules.featuresOutcomePresentation))
     implementation(project(Modules.featuresOutcomeDomain))
 
-    implementation(project(Modules.featuresBreefData))
-    implementation(project(Modules.featuresBreefPresentation))
-    implementation(project(Modules.featuresBreefDomain))
+    implementation(project(Modules.featuresBriefData))
+    implementation(project(Modules.featuresBriefPresentation))
+    implementation(project(Modules.featuresBriefDomain))
 
     implementation(project(Modules.featuresArticlesData))
     implementation(project(Modules.featuresArticlesPresentation))

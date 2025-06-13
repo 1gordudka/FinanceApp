@@ -4,8 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.finance.articles.presentation.di.ArticlesFeatureComponent
 import com.finance.articles.presentation.di.ArticlesFeatureComponentProvider
-import com.finance.breef.presentation.di.BreefFeatureComponent
-import com.finance.breef.presentation.di.BreefFeatureComponentProvider
+import com.finance.brief.presentation.di.BriefFeatureComponent
+import com.finance.brief.presentation.di.BriefFeatureComponentProvider
 import com.finance.di.app.AppComponent
 import com.finance.di.app.DaggerAppComponent
 import com.finance.income.presentation.di.IncomeFeatureComponent
@@ -19,7 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class FinanceApp : Application(), IncomeFeatureComponentProvider, BreefFeatureComponentProvider,
+class FinanceApp : Application(), IncomeFeatureComponentProvider, BriefFeatureComponentProvider,
 ArticlesFeatureComponentProvider, SettingsFeatureComponentProvider,
 OutcomeFeatureComponentProvider{
 
@@ -39,8 +39,8 @@ OutcomeFeatureComponentProvider{
         _appComponent = DaggerAppComponent.factory().create(this)
     }
 
-    override fun provideBreefFeatureComponent(): BreefFeatureComponent =
-        appComponent.breefComponentFactory.create()
+    override fun provideBriefFeatureComponent(): BriefFeatureComponent =
+        appComponent.briefComponentFactory.create()
 
     override fun provideArticlesFeatureComponent(): ArticlesFeatureComponent =
         appComponent.articleComponentFactory.create()

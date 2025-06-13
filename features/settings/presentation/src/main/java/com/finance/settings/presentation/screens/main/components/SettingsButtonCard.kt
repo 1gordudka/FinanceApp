@@ -18,49 +18,55 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.finance.common.ui.components.ListItem
 import com.finance.common.ui.theme.FinanceAppTheme
 import com.finance.settings.domain.SettingsButton
 import com.finance.settings.presentation.R
 
 @Composable
 fun SettingsButtonCard(
-    settingsButton: SettingsButton
+    settingsButton: SettingsButton,
+    onClick: () -> Unit
 ) {
 
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .height(56.dp)
-            .background(FinanceAppTheme.colors.background)
-            .clickable {  }
-            .padding(horizontal = 16.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        when (settingsButton) {
-            is SettingsButton.SettingsButtonDefault -> {
-                Text(
-                    settingsButton.name, style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier
-                        .padding(end = 16.dp)
-                        .padding(vertical = 16.dp)
-                )
-                Spacer(Modifier.weight(1f))
-                IconButton({}, Modifier.size(24.dp)) {
-                    Icon(painterResource(R.drawable.right_arrow), "")
+    ListItem(
+        content = {
+            when (settingsButton) {
+                is SettingsButton.SettingsButtonDefault -> {
+                    Text(
+                        settingsButton.name, style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier
+                            .padding(end = 16.dp)
+                            .padding(vertical = 16.dp)
+                    )
+                }
+
+                is SettingsButton.SettingsButtonSwitch -> {
+                    Text(
+                        settingsButton.name, style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier
+                            .padding(end = 16.dp)
+                            .padding(vertical = 16.dp)
+                    )
                 }
             }
+        },
+        trail = {
+            when (settingsButton) {
+                is SettingsButton.SettingsButtonDefault -> {
+                    IconButton({}, Modifier.size(24.dp)) {
+                        Icon(painterResource(R.drawable.right_arrow), "")
+                    }
+                }
 
-            is SettingsButton.SettingsButtonSwitch -> {
-                Text(
-                    settingsButton.name, style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier
-                        .padding(end = 16.dp)
-                        .padding(vertical = 16.dp)
-                )
-                Spacer(Modifier.weight(1f))
-                Switch(settingsButton.enabled, {})
+                is SettingsButton.SettingsButtonSwitch -> {
+                    Switch(settingsButton.enabled, {})
+                }
             }
-        }
-    }
+        },
+        onClick = onClick,
+        modifier = Modifier.height(56.dp)
+    )
+
 
 }

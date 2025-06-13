@@ -74,17 +74,6 @@ fun AppContent(
                     items = bottomBarItems
                 )
             }
-//            AnimatedVisibility(
-//                visible = shouldShowBottomBar,
-//                enter = slideInVertically(),
-//                exit = slideOutVertically()
-//            ) {
-//                BottomBar(
-//                    navController = navController,
-//                    currentDestinationParentRoute = currentDestinationParentRoute,
-//                    items = bottomBarItems
-//                )
-//            }
         },
         floatingActionButton = {
             if (shouldShowFAB) {
@@ -141,13 +130,16 @@ private fun BottomBar(
             NavigationBarItem(
                 selected = currentDestinationParentRoute == bottomBarItem.navigationRoute,
                 onClick = {
-                    navController.navigate(bottomBarItem.navigationRoute) {
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
+                    if (currentDestinationParentRoute != bottomBarItem.navigationRoute){
+                        navController.navigate(bottomBarItem.navigationRoute) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
                     }
+
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = FinanceAppTheme.colors.primary,

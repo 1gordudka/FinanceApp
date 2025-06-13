@@ -43,10 +43,7 @@ fun ArticlesMainScreenContent(
 ) {
     Column(Modifier.fillMaxSize().background(Color.White)) {
         FeatureTopBar(R.string.articles_top_bar, actionButton = {
-            IconButton({}) {
-                Icon(painterResource(com.finance.common.ui.R.drawable.edit_ic), "",
-                    tint = FinanceAppTheme.colors.onSurface)
-            }
+
         }, modifier = Modifier)
 
         when (state) {

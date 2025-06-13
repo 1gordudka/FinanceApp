@@ -17,7 +17,7 @@ fun SettingsMainScreenContentState(
 
     LazyColumn {
         items(settings) {
-            SettingsButtonCard(it)
+            SettingsButtonCard(it, onClick = {})
             GrayDivider()
         }
     }

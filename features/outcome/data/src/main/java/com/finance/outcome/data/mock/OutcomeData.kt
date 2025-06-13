@@ -9,51 +9,59 @@ val allOutcome = AllOutcome(
 )
 
 val allCategories = listOf(
-    OutcomeCategory.OutcomeCategoryLead(
+    OutcomeCategory(
+        id = 1,
         categoryName = "Аренда квартиры",
         formattedAmount = "100 000",
         currency = "₽",
         emoji = "🏡"
     ),
-    OutcomeCategory.OutcomeCategoryLead(
+    OutcomeCategory(
+        id = 2,
         categoryName = "Одежда",
         formattedAmount = "100 000",
         currency = "₽",
         emoji = "👕"
     ),
-    OutcomeCategory.OutcomeCategoryLead(
+    OutcomeCategory(
+        id = 3,
         categoryName = "На собачку",
         formattedAmount = "100 000",
         currency = "₽",
         emoji = "🐶",
         comment = "Джек"
     ),
-    OutcomeCategory.OutcomeCategoryLead(
+    OutcomeCategory(
+        id = 4,
         categoryName = "На собачку",
         formattedAmount = "100 000",
         currency = "₽",
         emoji = "🐶",
         comment = "Энни"
     ),
-    OutcomeCategory.OutcomeCategoryLead(
+    OutcomeCategory(
+        id = 5,
         categoryName = "Ремонт квартиры",
         formattedAmount = "100 000",
         currency = "₽",
         emoji = "РК"
     ),
-    OutcomeCategory.OutcomeCategoryLead(
+    OutcomeCategory(
+        id = 6,
         categoryName = "Продукты",
         formattedAmount = "100 000",
         currency = "₽",
         emoji = "🍭"
     ),
-    OutcomeCategory.OutcomeCategoryLead(
+    OutcomeCategory(
+        id = 7,
         categoryName = "Спортзал",
         formattedAmount = "100 000",
         currency = "₽",
         emoji = "🏋️‍♂️"
     ),
-    OutcomeCategory.OutcomeCategoryLead(
+    OutcomeCategory(
+        id = 8,
         categoryName = "Медицина",
         formattedAmount = "100 000",
         currency = "₽",

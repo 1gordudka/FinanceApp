@@ -3,7 +3,7 @@ package com.finance.di.app
 import android.content.Context
 import androidx.compose.runtime.Composable
 import com.finance.articles.presentation.di.ArticlesFeatureComponent
-import com.finance.breef.presentation.di.BreefFeatureComponent
+import com.finance.brief.presentation.di.BriefFeatureComponent
 import com.finance.di.navigation.NavigationComponent
 import com.finance.income.presentation.di.IncomeFeatureComponent
 import com.finance.outcome.presentation.di.OutcomeFeatureComponent
@@ -29,7 +29,7 @@ interface AppComponent {
 
     val incomeFeatureComponentFactory: IncomeFeatureComponent.Factory
     val outcomeComponentFactory: OutcomeFeatureComponent.Factory
-    val breefComponentFactory: BreefFeatureComponent.Factory
+    val briefComponentFactory: BriefFeatureComponent.Factory
     val settingsComponentFactory: SettingsFeatureComponent.Factory
     val articleComponentFactory: ArticlesFeatureComponent.Factory
 

@@ -19,6 +19,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.finance.common.ui.components.ListItem
 import com.finance.common.ui.theme.FinanceAppTheme
 
 @Composable
@@ -29,21 +30,18 @@ fun CategoryCard(
     onClick: () -> Unit
 ) {
 
-    Row (Modifier
-        .fillMaxWidth()
-        .background(FinanceAppTheme.colors.background)
-        .height(71.dp)
-        .clickable {
-            onClick()
-        }
-        .padding(vertical = 23.dp, horizontal = 16.dp),
-        verticalAlignment = Alignment.CenterVertically){
-        Text(categoryName, style = MaterialTheme.typography.bodyLarge)
-        Spacer(Modifier.weight(1f))
-        Text("$categoryAmount $categoryCurrency", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(end = 16.dp))
-        IconButton(onClick, modifier = Modifier.size(24.dp)) {
-            Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, "", tint = FinanceAppTheme.colors.lightGray)
-        }
-    }
+    ListItem(
+        content = {
+            Text(categoryName, style = MaterialTheme.typography.bodyLarge)
+        },
+        trail = {
+            Text("$categoryAmount $categoryCurrency", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(end = 16.dp))
+            IconButton(onClick, modifier = Modifier.size(24.dp)) {
+                Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, "", tint = FinanceAppTheme.colors.lightGray)
+            }
+        },
+        onClick = onClick,
+        modifier = Modifier.height(70.dp)
+    )
 
 }

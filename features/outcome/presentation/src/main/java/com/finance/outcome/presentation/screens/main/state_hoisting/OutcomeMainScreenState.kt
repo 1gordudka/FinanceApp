@@ -7,7 +7,7 @@ sealed class OutcomeMainScreenState {
 
     data class Content(
         val allOutcome: AllOutcome,
-        val categories: List<OutcomeCategory.OutcomeCategoryLead>
+        val categories: List<OutcomeCategory>
     ) : OutcomeMainScreenState()
 
     data object Loading : OutcomeMainScreenState()

@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
         val order = listOf(
             "outcome_feature_navigation_route",
             "income_feature_navigation_route",
-            "breef_feature_navigation_route",
+            "brief_feature_navigation_route",
             "articles_feature_navigation_route",
             "settings_feature_navigation_route"
         )

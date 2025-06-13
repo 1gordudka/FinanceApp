@@ -15,9 +15,9 @@ object Modules {
     const val featuresOutcomeData = ":features:outcome:data"
     const val featuresOutcomeDomain = ":features:outcome:domain"
 
-    const val featuresBreefPresentation = ":features:breef:presentation"
-    const val featuresBreefData = ":features:breef:data"
-    const val featuresBreefDomain = ":features:breef:domain"
+    const val featuresBriefPresentation = ":features:brief:presentation"
+    const val featuresBriefData = ":features:brief:data"
+    const val featuresBriefDomain = ":features:brief:domain"
 
     const val featuresSettingsPresentation = ":features:settings:presentation"
     const val featuresSettingsData = ":features:settings:data"
