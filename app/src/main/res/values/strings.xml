@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Finance App</string>
+    <string name="test_top_bar">Расходы сегодня</string>
 </resources>
