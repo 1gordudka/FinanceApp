@@ -26,6 +26,7 @@ import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -152,7 +153,7 @@ private fun BottomBar(
                     )
                 },
                 label = {
-                    Text(text = itemLabel)
+                    Text(text = itemLabel, style = Typography().labelMedium)
                 }
             )
         }

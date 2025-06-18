@@ -35,4 +35,5 @@ android {
 dependencies {
 
     implementation(project(Modules.featuresOutcomeDomain))
+    implementation((project(Modules.commonDomain)))
 }

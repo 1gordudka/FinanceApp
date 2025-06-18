@@ -1,17 +1,12 @@
-package com.finance.outcome.presentation.screens.main.components
+package com.finance.common.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
@@ -26,17 +21,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.finance.common.ui.components.ListItem
 import com.finance.common.ui.theme.FinanceAppTheme
 
 @Composable
-fun CategoryCard(
+fun TransactionCard(
+    name: String,
+    amount: String,
+    currency: String,
+    time: String,
     emoji: String,
-    categoryName: String,
-    categoryAmount: String,
-    categoryCurrency: String,
-    comment: String?,
-    onClick: () -> Unit
+    comment: String? = null,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
 
     ListItem(
@@ -58,21 +54,30 @@ fun CategoryCard(
             Column(
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(categoryName, style = MaterialTheme.typography.bodyLarge)
+                Text(name, style = MaterialTheme.typography.bodyLarge)
                 comment.let { com ->
                     if (com != null) {
-                        Text(com, style = MaterialTheme.typography.bodyMedium)
+                        Text(com, style = MaterialTheme.typography.labelMedium)
                     }
                 }
 
             }
         },
         trail = {
-            Text(
-                "$categoryAmount $categoryCurrency",
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.padding(end = 16.dp)
-            )
+            Column(
+                horizontalAlignment = Alignment.End
+            ) {
+                Text(
+                    "$amount $currency",
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(end = 16.dp)
+                )
+                Text(
+                    "$time",
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(end = 16.dp)
+                )
+            }
             IconButton(onClick, modifier = Modifier.size(24.dp)) {
                 Icon(
                     Icons.AutoMirrored.Rounded.KeyboardArrowRight,
@@ -84,5 +89,4 @@ fun CategoryCard(
         onClick = onClick,
         modifier = Modifier.height(70.dp)
     )
-
 }

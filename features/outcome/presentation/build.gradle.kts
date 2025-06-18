@@ -45,6 +45,8 @@ dependencies {
     api(project(Modules.featuresOutcomeData))
     api(project(Modules.featuresOutcomeDomain))
 
+    implementation(project(Modules.commonDomain))
+
     // Compose
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)

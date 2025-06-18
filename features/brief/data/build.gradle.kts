@@ -34,4 +34,6 @@ android {
 
 dependencies {
     implementation(project(Modules.featuresBriefDomain))
+
+    implementation(libs.retrofit)
 }

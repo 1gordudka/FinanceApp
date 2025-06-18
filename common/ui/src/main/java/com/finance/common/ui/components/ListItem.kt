@@ -37,11 +37,11 @@ fun ListItem(
 ) {
 
     Row(modifier
-        .fillMaxWidth()
-        .background(FinanceAppTheme.colors.background)
         .clickable {
             onClick()
         }
+        .fillMaxWidth()
+        .background(FinanceAppTheme.colors.background)
         .padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically) {
         if (lead != null) {

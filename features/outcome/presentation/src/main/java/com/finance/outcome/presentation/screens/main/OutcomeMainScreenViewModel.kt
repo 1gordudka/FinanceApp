@@ -10,6 +10,7 @@ import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainS
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class OutcomeMainScreenViewModel() :
     StatefulViewModel<OutcomeMainScreenState, OutcomeMainScreenEffect, OutcomeMainScreenAction>() {
@@ -23,6 +24,14 @@ class OutcomeMainScreenViewModel() :
     )
 
     override fun onAction(action: OutcomeMainScreenAction) {
-        // handle outcome actions here
+        when (action) {
+            OutcomeMainScreenAction.OnHistoryClicked -> {
+                viewModelScope.launch {
+                    updateEffect(
+                        OutcomeMainScreenEffect.NavigateToHistoryScreen
+                    )
+                }
+            }
+        }
     }
 }

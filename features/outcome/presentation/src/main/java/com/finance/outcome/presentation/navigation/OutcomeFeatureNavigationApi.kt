@@ -8,6 +8,7 @@ import androidx.navigation.navigation
 import com.finance.common.navigation.FeatureNavigationApi
 import com.finance.common.navigation.daggerViewModel
 import com.finance.outcome.presentation.di.OutcomeFeatureComponentProvider
+import com.finance.outcome.presentation.screens.history.OutcomeHistoryScreen
 import com.finance.outcome.presentation.screens.main.OutcomeMainScreen
 
 
@@ -45,6 +46,21 @@ class OutcomeFeatureNavigationApi : FeatureNavigationApi {
 
                 OutcomeMainScreen(navController, viewModel)
             }
+
+            composable(
+                route = OutcomeFeatureScreens.HistoryOutcomeScreen.route
+            ) {
+
+                val outcomeHistoryScreenComponent =
+                    outcomeFeatureComponent.outcomeHistoryScreenComponentFactory.create()
+                val viewModel = daggerViewModel {
+                    outcomeHistoryScreenComponent.outcomeHistoryScreenViewModel
+                }
+
+                OutcomeHistoryScreen(navController, viewModel)
+            }
+
+
         }
     }
 }

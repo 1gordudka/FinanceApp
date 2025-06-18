@@ -18,7 +18,9 @@ import com.finance.common.ui.components.FeatureTopBar
 import com.finance.common.ui.ext.collectAsEffect
 import com.finance.common.ui.theme.FinanceAppTheme
 import com.finance.outcome.presentation.R
+import com.finance.outcome.presentation.navigation.OutcomeFeatureScreens
 import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainScreenAction
+import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainScreenEffect
 import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainScreenState
 import com.finance.outcome.presentation.screens.main.states.OutcomeMainScreenContentState
 import com.finance.outcome.presentation.screens.main.states.OutcomeMainScreenEmptyState
@@ -31,7 +33,13 @@ fun OutcomeMainScreen(
     viewModel: OutcomeMainScreenViewModel,
 ) {
     val state by viewModel.state.collectAsState()
-    viewModel.effect.collectAsEffect { }
+    viewModel.effect.collectAsEffect {
+        when (it) {
+            OutcomeMainScreenEffect.NavigateToHistoryScreen -> {
+                navController.navigate(OutcomeFeatureScreens.HistoryOutcomeScreen.route)
+            }
+        }
+    }
 
     OutcomeMainScreenContent(
         state, viewModel::onAction
@@ -43,10 +51,16 @@ fun OutcomeMainScreenContent(
     state: OutcomeMainScreenState,
     onAction: (OutcomeMainScreenAction) -> Unit
 ) {
-    Column(Modifier.fillMaxSize().background(Color.White)) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
         FeatureTopBar(R.string.outcome_top_bar, actionButton = {
             IconButton(
-                {},
+                {
+                    onAction(OutcomeMainScreenAction.OnHistoryClicked)
+                },
                 modifier = Modifier.size(48.dp)
             ) {
                 Icon(
@@ -63,6 +77,7 @@ fun OutcomeMainScreenContent(
                 allOutcome = state.allOutcome,
                 onAction = onAction
             )
+
             OutcomeMainScreenState.Empty -> OutcomeMainScreenEmptyState()
             OutcomeMainScreenState.Error -> OutcomeMainScreenErrorState()
             OutcomeMainScreenState.Loading -> OutcomeMainScreenLoadingState()

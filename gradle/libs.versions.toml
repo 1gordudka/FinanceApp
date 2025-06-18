@@ -1,8 +1,8 @@
 [versions]
-androidPlugin = "8.8.0"
-kotlin = "2.0.0"
+androidPlugin = "8.8.2"
+kotlin = "2.0.21"
 compose = "1.5.10"
-composeBom = "2025.01.01"
+composeBom = "2025.06.00"
 lifecycleCore = "1.15.0"
 lifecycleRuntime = "2.8.7"
 composeActivity = "1.10.0"
@@ -13,6 +13,8 @@ dagger = "2.55"
 coroutines = "1.8.0"
 appcompat = "1.7.1"
 material = "1.12.0"
+
+retrofit = "2.11.0"
 
 
 [libraries]
@@ -45,6 +47,9 @@ dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", versi
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+# Retrofit
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 
 
 

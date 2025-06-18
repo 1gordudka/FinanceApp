@@ -5,6 +5,7 @@ object Modules {
     // Common
     const val commonUi = ":common:ui"
     const val commonNavigation = ":common:navigation"
+    const val commonDomain = ":common:domain"
 
     // Features
     const val featuresIncomePresentation = ":features:income:presentation"
