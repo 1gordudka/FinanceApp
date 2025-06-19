@@ -11,6 +11,7 @@ import dagger.Module
 @Module(
     subcomponents = [NavigationComponent::class, IncomeFeatureComponent::class,
     OutcomeFeatureComponent::class, SettingsFeatureComponent::class, ArticlesFeatureComponent::class,
-    BriefFeatureComponent::class]
+    BriefFeatureComponent::class],
+    includes = [com.finance.common.network.NetworkModule::class]
 )
 class AppModule

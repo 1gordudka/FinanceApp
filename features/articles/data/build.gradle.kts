@@ -35,4 +35,11 @@ android {
 dependencies {
 
     implementation(project(Modules.featuresArticlesDomain))
+
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    api(libs.serialization.json)
+
+    // Coroutines
+    implementation(libs.coroutines.core)
 }

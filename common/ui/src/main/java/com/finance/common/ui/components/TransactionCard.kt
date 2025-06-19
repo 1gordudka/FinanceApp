@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.finance.common.ui.ext.formatIsoDate
 import com.finance.common.ui.theme.FinanceAppTheme
 
 @Composable
@@ -73,7 +74,7 @@ fun TransactionCard(
                     modifier = Modifier.padding(end = 16.dp)
                 )
                 Text(
-                    "$time",
+                    formatIsoDate(time),
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(end = 16.dp)
                 )

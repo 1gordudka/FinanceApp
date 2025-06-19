@@ -1,6 +1,6 @@
 package com.finance.income.domain.models
 
-data class IncomeCategory(
+data class IncomeTransaction(
     val id: Int,
     val categoryName: String,
     val formattedAmount: String,

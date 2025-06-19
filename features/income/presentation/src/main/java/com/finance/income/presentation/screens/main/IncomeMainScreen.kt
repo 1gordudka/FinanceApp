@@ -19,7 +19,9 @@ import com.finance.common.ui.components.FeatureTopBar
 import com.finance.common.ui.ext.collectAsEffect
 import com.finance.common.ui.theme.FinanceAppTheme
 import com.finance.income.presentation.R
+import com.finance.income.presentation.navigation.IncomeFeatureScreens
 import com.finance.income.presentation.screens.main.state_hoisting.IncomeMainScreenAction
+import com.finance.income.presentation.screens.main.state_hoisting.IncomeMainScreenEffect
 import com.finance.income.presentation.screens.main.state_hoisting.IncomeMainScreenState
 import com.finance.income.presentation.screens.main.states.IncomeMainScreenContentState
 import com.finance.income.presentation.screens.main.states.IncomeMainScreenEmptyState
@@ -34,7 +36,11 @@ fun IncomeMainScreen(
 
     val state by viewModel.state.collectAsState()
     viewModel.effect.collectAsEffect {
-
+        when(it){
+            IncomeMainScreenEffect.NavigateToHistoryScreen -> {
+                navController.navigate(IncomeFeatureScreens.HistoryIncomeScreen.route)
+            }
+        }
     }
 
 
@@ -59,7 +65,9 @@ fun IncomeMainScreenContent(
             featureNameId = R.string.top_bar,
             actionButton = {
                 IconButton(
-                    {},
+                    {
+                        onAction(IncomeMainScreenAction.OnHistoryClicked)
+                    },
                     modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
@@ -87,7 +95,11 @@ fun IncomeMainScreenContent(
             }
 
             IncomeMainScreenState.Error -> {
-                IncomeMainScreenErrorState()
+                IncomeMainScreenErrorState(
+                    {
+                        onAction(IncomeMainScreenAction.OnScreenEntered)
+                    }
+                )
             }
 
             IncomeMainScreenState.Loading -> {

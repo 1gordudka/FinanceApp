@@ -1,5 +1,6 @@
 package com.finance.income.presentation.di
 
+import com.finance.income.presentation.screens.history.di.IncomeHistoryScreenComponent
 import com.finance.income.presentation.screens.main.di.IncomeScreenComponent
 import dagger.Component
 import dagger.Subcomponent
@@ -18,4 +19,5 @@ interface IncomeFeatureComponent {
 
 
     val incomeMainScreenComponentFactory: IncomeScreenComponent.Factory
+    val incomeHistoryScreenComponentFactory: IncomeHistoryScreenComponent.Factory
 }

@@ -1,7 +1,7 @@
 package com.features.income.data.mock
 
 import com.finance.income.domain.models.AllIncome
-import com.finance.income.domain.models.IncomeCategory
+import com.finance.income.domain.models.IncomeTransaction
 
 val allIncome = AllIncome(
     formattedAmount = "600 000",
@@ -9,13 +9,13 @@ val allIncome = AllIncome(
 )
 
 val allCategories = listOf(
-    IncomeCategory(
+    IncomeTransaction(
         id = 1,
         categoryName = "Зарплата",
         formattedAmount = "500 000",
         currency = "₽"
     ),
-    IncomeCategory(
+    IncomeTransaction(
         id = 2,
         categoryName = "Подработка",
         formattedAmount = "100 000",

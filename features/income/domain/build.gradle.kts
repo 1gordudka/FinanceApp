@@ -14,6 +14,12 @@ kotlin {
 
 
 dependencies{
+
+    // Modules
+    implementation(project(Modules.commonDomain))
+
     // Coroutines
     implementation(libs.coroutines.core)
+
+
 }

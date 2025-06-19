@@ -79,7 +79,10 @@ fun OutcomeMainScreenContent(
             )
 
             OutcomeMainScreenState.Empty -> OutcomeMainScreenEmptyState()
-            OutcomeMainScreenState.Error -> OutcomeMainScreenErrorState()
+            OutcomeMainScreenState.Error -> OutcomeMainScreenErrorState({
+                onAction(OutcomeMainScreenAction.OnScreenEntered)
+            })
+
             OutcomeMainScreenState.Loading -> OutcomeMainScreenLoadingState()
         }
     }

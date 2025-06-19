@@ -49,6 +49,7 @@ dependencies {
     // Modules
     implementation(project(Modules.commonUi))
     implementation(project(Modules.commonNavigation))
+    implementation(project(Modules.commonNetwork))
 
     implementation(project(Modules.featuresIncomeData))
     implementation(project(Modules.featuresIncomePresentation))
@@ -82,6 +83,9 @@ dependencies {
     implementation(libs.compose.ui.graphics)
     implementation(libs.compose.tooling.preview)
     implementation(libs.compose.navigation)
+
+    // Retrofit
+    implementation(libs.retrofit)
 
     // Testing
     testImplementation(libs.junit)

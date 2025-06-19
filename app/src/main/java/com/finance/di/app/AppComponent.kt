@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import com.finance.articles.presentation.di.ArticlesFeatureComponent
 import com.finance.brief.presentation.di.BriefFeatureComponent
+import com.finance.common.network.NetworkModule
+import com.finance.common.network.repository.AccountRepository
 import com.finance.di.navigation.NavigationComponent
 import com.finance.income.presentation.di.IncomeFeatureComponent
 import com.finance.outcome.presentation.di.OutcomeFeatureComponent
@@ -20,6 +22,8 @@ import javax.inject.Singleton
 interface AppComponent {
 
     val navigationComponentFactory: NavigationComponent.Factory
+
+    fun accountRepository(): AccountRepository
 
     @Component.Factory
     interface Factory {

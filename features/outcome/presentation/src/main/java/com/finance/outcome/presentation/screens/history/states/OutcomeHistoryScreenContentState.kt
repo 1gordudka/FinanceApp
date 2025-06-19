@@ -32,11 +32,11 @@ fun OutcomeHistoryScreenContentState(
             transactions, key = {it.id}
         ){
             TransactionCard(
-                name = it.name,
+                name = it.category.name,
                 amount = it.amount,
-                currency = it.currency,
-                time = it.time,
-                emoji = it.emoji,
+                currency = it.account.currency,
+                time = it.createdAt,
+                emoji = it.category.emoji,
                 comment = it.comment,
                 onClick = {onTransactionClick(it)},
                 modifier = Modifier

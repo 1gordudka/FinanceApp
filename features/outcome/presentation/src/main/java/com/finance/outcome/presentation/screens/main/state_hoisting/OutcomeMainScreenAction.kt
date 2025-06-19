@@ -4,4 +4,5 @@ sealed class OutcomeMainScreenAction {
 
     data object OnHistoryClicked : OutcomeMainScreenAction()
 
+    data object OnScreenEntered : OutcomeMainScreenAction()
 }
