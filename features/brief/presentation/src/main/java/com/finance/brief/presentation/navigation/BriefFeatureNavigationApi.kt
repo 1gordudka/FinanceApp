@@ -6,6 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.finance.brief.presentation.di.BriefFeatureComponentProvider
+import com.finance.brief.presentation.screens.create.CreateAccountScreen
 import com.finance.brief.presentation.screens.main.BriefMainScreen
 import com.finance.common.navigation.FeatureNavigationApi
 import com.finance.common.navigation.daggerViewModel
@@ -43,6 +44,19 @@ class BriefFeatureNavigationApi : FeatureNavigationApi {
                 }
 
                 BriefMainScreen(navController, viewModel)
+            }
+
+            composable(
+                route = BriefFeatureScreens.CreateAccountScreen.route
+            ) {
+                val createAccountScreenComponent =
+                    briefFeatureComponent.createAccountScreenComponentFactory.create()
+
+                val viewModel = daggerViewModel {
+                    createAccountScreenComponent.createAccountScreenViewModel
+                }
+
+                CreateAccountScreen(navController, viewModel)
             }
         }
     }

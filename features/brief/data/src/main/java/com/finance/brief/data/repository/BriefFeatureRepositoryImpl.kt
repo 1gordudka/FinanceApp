@@ -4,8 +4,11 @@ import android.util.Log
 import com.finance.brief.data.remote.mappers.toDomain
 import com.finance.brief.data.remote.repository.RemoteBriefFeatureRepository
 import com.finance.brief.data.remote.results.ObtainRemoteAccountInfo
+import com.finance.brief.data.remote.results.ObtainRemoteCreateAccountResult
+import com.finance.brief.domain.models.CreateAccountRequest
 import com.finance.brief.domain.repository.BriefFeatureRepository
 import com.finance.brief.domain.results.ObtainAccountResult
+import com.finance.brief.domain.results.ObtainCreateAccountResult
 import com.finance.common.network.repository.AccountRepository
 import com.finance.common.network.results.ObtainAccountId
 
@@ -24,6 +27,15 @@ class BriefFeatureRepositoryImpl(
                     is ObtainRemoteAccountInfo.Success -> ObtainAccountResult.Success(remoteResult.info.toDomain())
                 }
             }
+        }
+    }
+
+    override suspend fun createAccount(createAccountRequest: CreateAccountRequest): ObtainCreateAccountResult {
+        val result = remoteBriefFeatureRepository.createAccount(createAccountRequest)
+
+        return when(result){
+            ObtainRemoteCreateAccountResult.Error -> ObtainCreateAccountResult.Error
+            is ObtainRemoteCreateAccountResult.Success -> ObtainCreateAccountResult.Success
         }
     }
 

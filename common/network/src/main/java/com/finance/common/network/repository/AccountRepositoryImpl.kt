@@ -21,7 +21,7 @@ class AccountRepositoryImpl(
             try {
                 val response = accountService.getAccounts()
                 if (response.isSuccessful){
-                    accountId = response.body()!!.get(0).id
+                    accountId = response.body()!!.find { it.id == 26 }?.id
                     return ObtainAccountId.Success(accountId!!)
                 }else{
                     return ObtainAccountId.Error

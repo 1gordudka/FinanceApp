@@ -1,7 +1,7 @@
 package com.finance.outcome.domain.results
 
+import com.finance.domain.transaction.Transaction
 import com.finance.outcome.domain.models.AllOutcome
-import com.finance.outcome.domain.models.OutcomeCategory
 
 sealed class ObtainOutcomeData {
 
@@ -11,6 +11,6 @@ sealed class ObtainOutcomeData {
         val startDate: String,
         val endDate: String,
         val allOutcome: AllOutcome,
-        val categories: List<OutcomeCategory>,
+        val transactions: List<Transaction>,
     ): ObtainOutcomeData()
 }

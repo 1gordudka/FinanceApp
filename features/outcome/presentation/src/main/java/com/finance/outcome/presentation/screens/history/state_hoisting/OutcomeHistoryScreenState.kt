@@ -11,6 +11,7 @@ sealed class OutcomeHistoryScreenState {
         val endDate: String,
         val amount: String,
         val currency: String,
+        val isDatePicker: Boolean = false,
     ) : OutcomeHistoryScreenState()
 
     data object Loading : OutcomeHistoryScreenState()

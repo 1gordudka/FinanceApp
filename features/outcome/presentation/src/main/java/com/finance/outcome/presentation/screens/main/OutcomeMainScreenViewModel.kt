@@ -2,11 +2,9 @@ package com.finance.outcome.presentation.screens.main
 
 import androidx.lifecycle.viewModelScope
 import com.finance.common.ui.state_hoisting.StatefulViewModel
-import com.finance.outcome.data.mock.allCategories
-import com.finance.outcome.data.mock.allOutcome
+import com.finance.outcome.data.remote.mappers.incomeCategoryToUIMapper
 import com.finance.outcome.domain.results.ObtainOutcomeData
 import com.finance.outcome.domain.use_cases.GetTodayOutcomeDataUseCase
-import com.finance.outcome.presentation.screens.history.state_hoisting.OutcomeHistoryScreenState
 import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainScreenAction
 import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainScreenEffect
 import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainScreenState
@@ -59,7 +57,7 @@ class OutcomeMainScreenViewModel(
                     updateState(
                         OutcomeMainScreenState.Content(
                             allOutcome = result.allOutcome,
-                            categories = result.categories
+                            categories = incomeCategoryToUIMapper(result.transactions)
                         )
                     )
                 }

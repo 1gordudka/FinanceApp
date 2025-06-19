@@ -26,7 +26,7 @@ class OutcomeFeatureRepositoryImpl(
                         startDate = startDate,
                         endDate = endDate,
                         allOutcome = calculateAllOutcome(remoteResult.transactions),
-                        categories = incomeCategoryToUIMapper(remoteResult.transactions)
+                        transactions = remoteResult.transactions
                     )
                 }
             }

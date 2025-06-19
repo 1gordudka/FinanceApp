@@ -40,6 +40,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.finance.brief.presentation.navigation.BriefFeatureScreens
 import com.finance.common.navigation.BottomBarItem
 import com.finance.common.navigation.FeatureNavigationApi
 import com.finance.common.ui.theme.FinanceAppTheme
@@ -61,14 +62,15 @@ fun AppContent(
     val shouldShowBottomBar =
         featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute } || currentDestinationParentRoute == null && currentDestinationRoute != "splash"
 
-    val notFABRoutes = listOf("settings_feature_navigation_route", "articles_feature_navigation_route")
+    val notFABRoutes =
+        listOf("settings_feature_navigation_route", "articles_feature_navigation_route")
 
     val shouldShowFAB =
         featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute && currentDestinationParentRoute !in notFABRoutes } || currentDestinationParentRoute == null && currentDestinationRoute != "splash"
 
     Scaffold(
         bottomBar = {
-            if (shouldShowBottomBar){
+            if (shouldShowBottomBar) {
                 BottomBar(
                     navController = navController,
                     currentDestinationParentRoute = currentDestinationParentRoute,
@@ -79,7 +81,11 @@ fun AppContent(
         floatingActionButton = {
             if (shouldShowFAB) {
                 FloatingActionButton(
-                    onClick = {  },
+                    onClick = {
+                        if (currentDestinationRoute == BriefFeatureScreens.startScreenDestination) {
+                            navController.navigate(BriefFeatureScreens.CreateAccountScreen.route)
+                        }
+                    },
                     containerColor = FinanceAppTheme.colors.primary,
                     contentColor = Color.White,
                     shape = CircleShape,
@@ -131,7 +137,7 @@ private fun BottomBar(
             NavigationBarItem(
                 selected = currentDestinationParentRoute == bottomBarItem.navigationRoute,
                 onClick = {
-                    if (currentDestinationParentRoute != bottomBarItem.navigationRoute){
+                    if (currentDestinationParentRoute != bottomBarItem.navigationRoute) {
                         navController.navigate(bottomBarItem.navigationRoute) {
                             popUpTo(navController.graph.findStartDestination().id) {
                                 saveState = true
