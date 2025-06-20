@@ -47,6 +47,10 @@ dependencies {
     api(project(Modules.featuresIncomeData))
     api(project(Modules.featuresIncomeDomain))
 
+    implementation(project(Modules.commonDomain))
+
+    implementation(project(Modules.commonNetwork))
+
     // Compose
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
@@ -61,4 +65,9 @@ dependencies {
     // Dagger
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+
+    //Network
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.converter.gson)
 }

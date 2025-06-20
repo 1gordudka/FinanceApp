@@ -8,6 +8,7 @@ import androidx.navigation.navigation
 import com.finance.common.navigation.FeatureNavigationApi
 import com.finance.common.navigation.daggerViewModel
 import com.finance.income.presentation.di.IncomeFeatureComponentProvider
+import com.finance.income.presentation.screens.history.IncomeHistoryScreen
 import com.finance.income.presentation.screens.main.IncomeMainScreen
 
 class IncomeFeatureNavigationApi : FeatureNavigationApi {
@@ -46,6 +47,23 @@ class IncomeFeatureNavigationApi : FeatureNavigationApi {
                 }
 
                 IncomeMainScreen(
+                    navController, viewModel
+                )
+
+            }
+
+            composable(
+                route = IncomeFeatureScreens.HistoryIncomeScreen.route
+            ) {
+
+                val incomeScreenComponent =
+                    incomeFeatureComponent.incomeHistoryScreenComponentFactory.create()
+
+                val viewModel = daggerViewModel {
+                    incomeScreenComponent.incomeHistoryScreenViewModel
+                }
+
+                IncomeHistoryScreen(
                     navController, viewModel
                 )
 

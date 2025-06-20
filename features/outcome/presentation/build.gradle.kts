@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -42,8 +45,12 @@ dependencies {
     implementation(project(Modules.commonUi))
     implementation(project(Modules.commonNavigation))
 
+    implementation(project(Modules.commonNetwork))
+
     api(project(Modules.featuresOutcomeData))
     api(project(Modules.featuresOutcomeDomain))
+
+    implementation(project(Modules.commonDomain))
 
     // Compose
     implementation(platform(libs.compose.bom))
@@ -59,4 +66,9 @@ dependencies {
     // Dagger
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+
+    //Network
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.converter.gson)
 }

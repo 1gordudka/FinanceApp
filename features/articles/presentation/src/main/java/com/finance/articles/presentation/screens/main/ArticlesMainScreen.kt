@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -29,7 +30,9 @@ fun ArticlesMainScreen(
     viewModel: ArticlesMainScreenViewModel,
 ) {
     val state by viewModel.state.collectAsState()
-    viewModel.effect.collectAsEffect { }
+    viewModel.effect.collectAsEffect {
+
+    }
 
     ArticlesMainScreenContent(
         state, viewModel::onAction
@@ -41,7 +44,11 @@ fun ArticlesMainScreenContent(
     state: ArticlesMainScreenState,
     onAction: (ArticlesMainScreenAction) -> Unit
 ) {
-    Column(Modifier.fillMaxSize().background(Color.White)) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
         FeatureTopBar(R.string.articles_top_bar, actionButton = {
 
         }, modifier = Modifier)
@@ -51,8 +58,14 @@ fun ArticlesMainScreenContent(
                 articles = state.articles,
                 onAction = onAction
             )
+
             ArticlesMainScreenState.Empty -> ArticlesMainScreenEmptyState()
-            ArticlesMainScreenState.Error -> ArticlesMainScreenErrorState()
+            ArticlesMainScreenState.Error -> ArticlesMainScreenErrorState({
+                onAction(
+                    ArticlesMainScreenAction.OnScreenEntered
+                )
+            })
+
             ArticlesMainScreenState.Loading -> ArticlesMainScreenLoadingState()
         }
     }

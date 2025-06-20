@@ -1,5 +1,6 @@
 package com.finance.articles.presentation.navigation
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -9,6 +10,8 @@ import com.finance.common.navigation.FeatureNavigationApi
 import com.finance.common.navigation.daggerViewModel
 import com.finance.articles.presentation.di.ArticlesFeatureComponentProvider
 import com.finance.articles.presentation.screens.main.ArticlesMainScreen
+import com.finance.articles.presentation.screens.main.ArticlesMainScreenViewModel
+import com.finance.articles.presentation.screens.main.state_hoisting.ArticlesMainScreenAction
 
 class ArticlesFeatureNavigationApi : FeatureNavigationApi {
 
@@ -38,7 +41,7 @@ class ArticlesFeatureNavigationApi : FeatureNavigationApi {
                 val articlesScreenComponent =
                     articlesFeatureComponent.articlesMainScreenComponentFactory.create()
 
-                val viewModel = daggerViewModel {
+                val viewModel: ArticlesMainScreenViewModel = daggerViewModel {
                     articlesScreenComponent.articlesMainScreenViewModel
                 }
 

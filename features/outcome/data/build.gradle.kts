@@ -35,4 +35,17 @@ android {
 dependencies {
 
     implementation(project(Modules.featuresOutcomeDomain))
+    implementation((project(Modules.commonDomain)))
+
+    implementation(project(Modules.commonNetwork))
+
+    // Network
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    api(libs.serialization.json)
+
+    implementation(libs.retrofit)
+
+    // Coroutines
+    implementation(libs.coroutines.core)
 }

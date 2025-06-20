@@ -23,7 +23,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.finance.common.ui.components.ListItem
 import com.finance.common.ui.theme.FinanceAppTheme
 
@@ -46,9 +48,9 @@ fun CategoryCard(
                     .background(FinanceAppTheme.colors.lightPrimary)
             ) {
                 Text(
-                    emoji, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.align(
+                    emoji, modifier = Modifier.align(
                         Alignment.Center
-                    )
+                    ), fontSize = 12.sp, color = Color.Black
                 )
             }
         },

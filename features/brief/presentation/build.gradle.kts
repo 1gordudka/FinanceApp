@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -14,6 +17,13 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        val localProperties = Properties()
+        val localFile = rootProject.file("local.properties")
+        if (localFile.exists()) {
+            localProperties.load(FileInputStream(localFile))
+        }
+        val apiKey = localProperties.getProperty("API_KEY")
+        buildConfigField("String", "API_KEY", "\"${apiKey}\"")
     }
 
     buildTypes {
@@ -34,16 +44,20 @@ android {
     }
     buildFeatures{
         compose = true
+        buildConfig = true
     }
 }
 
 dependencies {
 
+    // Modules
     implementation(project(Modules.commonUi))
     implementation(project(Modules.commonNavigation))
 
     api(project(Modules.featuresBriefDomain))
     api(project(Modules.featuresBriefData))
+
+    implementation(project(Modules.commonNetwork))
 
     // Compose
     implementation(platform(libs.compose.bom))
@@ -59,4 +73,9 @@ dependencies {
     // Dagger
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+
+    // Network
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.converter.gson)
 }

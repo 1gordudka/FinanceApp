@@ -41,12 +41,15 @@ fun BriefMainScreenContent(
     state: BriefMainScreenState,
     onAction: (BriefMainScreenAction) -> Unit
 ) {
-    Column(Modifier.fillMaxSize().background(Color.White)) {
+    Column(Modifier
+        .fillMaxSize()
+        .background(Color.White)) {
         FeatureTopBar(R.string.brief_top_bar, actionButton = {
             IconButton({}) {
                 Icon(
                     painterResource(com.finance.common.ui.R.drawable.edit_ic), "",
-                    tint = FinanceAppTheme.colors.onSurface)
+                    tint = FinanceAppTheme.colors.onSurface
+                )
             }
         }, modifier = Modifier)
 
@@ -56,8 +59,12 @@ fun BriefMainScreenContent(
                 currency = state.balance.currency,
                 onAction = onAction
             )
+
             BriefMainScreenState.Empty -> BriefMainScreenEmptyState()
-            BriefMainScreenState.Error -> BriefMainScreenErrorState()
+            BriefMainScreenState.Error -> BriefMainScreenErrorState({
+                onAction(BriefMainScreenAction.OnScreenEntered)
+            })
+
             BriefMainScreenState.Loading -> BriefMainScreenLoadingState()
         }
     }

@@ -1,9 +1,10 @@
 package com.finance.outcome.data.remote.mappers
 
+import com.finance.domain.transaction.Transaction
 import com.finance.outcome.data.remote.models.TransactionResponse
 import com.finance.outcome.domain.models.OutcomeCategory
 
-fun incomeCategoryToUIMapper(list: List<TransactionResponse>): List<OutcomeCategory> {
+fun incomeCategoryToUIMapper(list: List<Transaction>): List<OutcomeCategory> {
     return list
         .filter { !it.category.isIncome }
         .groupBy { it.category.id }
