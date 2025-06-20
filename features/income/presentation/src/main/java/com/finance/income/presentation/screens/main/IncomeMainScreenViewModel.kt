@@ -53,12 +53,16 @@ class IncomeMainScreenViewModel(
             when (result) {
                 ObtainIncomeData.Error -> updateState(IncomeMainScreenState.Error)
                 is ObtainIncomeData.Success -> {
-                    updateState(
-                        IncomeMainScreenState.Content(
-                            allIncome = result.allIncome,
-                            categories = incomeCategoryToUIMapper(result.transactions)
+                    if (result.transactions.isNotEmpty()) {
+                        updateState(
+                            IncomeMainScreenState.Content(
+                                allIncome = result.allIncome,
+                                categories = incomeCategoryToUIMapper(result.transactions)
+                            )
                         )
-                    )
+                    } else {
+                        updateState(IncomeMainScreenState.Empty)
+                    }
                 }
             }
         }

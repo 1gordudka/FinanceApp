@@ -6,7 +6,7 @@ import com.finance.common.network.results.ObtainAccountId
 
 class AccountRepositoryImpl(
     private val accountService: AccountService
-) : AccountRepository{
+) : AccountRepository {
 
     private var accountId: Int? = null
 
@@ -15,18 +15,18 @@ class AccountRepositoryImpl(
     }
 
     override suspend fun getAccountId(): ObtainAccountId {
-        if (accountId != null){
+        if (accountId != null) {
             return ObtainAccountId.Success(accountId!!)
-        }else{
+        } else {
             try {
                 val response = accountService.getAccounts()
-                if (response.isSuccessful){
-                    accountId = response.body()!!.find { it.id == 26 }?.id
+                if (response.isSuccessful) {
+                    accountId = response.body()!!.get(0).id
                     return ObtainAccountId.Success(accountId!!)
-                }else{
+                } else {
                     return ObtainAccountId.Error
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d("ERROR", e.message.toString())
                 return ObtainAccountId.Error
             }

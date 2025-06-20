@@ -185,13 +185,15 @@ fun IncomeHistoryScreenContent(
                             )
                         }
                         TextButton({
-                            onAction(
-                                IncomeHistoryScreenAction.GetData(
-                                    startDate = formatMillisToDate(pickerState.selectedStartDateMillis!!),
-                                    endDate = formatMillisToDate(pickerState.selectedEndDateMillis!!)
+                            if (pickerState.selectedEndDateMillis != null && pickerState.selectedStartDateMillis != null){
+                                onAction(
+                                    IncomeHistoryScreenAction.GetData(
+                                        startDate = formatMillisToDate(pickerState.selectedStartDateMillis!!),
+                                        endDate = formatMillisToDate(pickerState.selectedEndDateMillis!!)
+                                    )
                                 )
-                            )
-                            onAction(IncomeHistoryScreenAction.OnCalendarClicked)
+                                onAction(IncomeHistoryScreenAction.OnCalendarClicked)
+                            }
                         }) {
                             Text(
                                 "Готово",

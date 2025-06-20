@@ -20,7 +20,7 @@ class RemoteOutcomeFeatureRepositoryImpl(
             try {
                 val response = outcomeService.getTransactions(accountId, startDate, endDate)
                 if (response.isSuccessful) {
-                    return RemoteObtainOutcomeResult.Success(response.body()!!.filter { !it.category.isIncome })
+                    return RemoteObtainOutcomeResult.Success(response.body()!!.filter { !it.category.isIncome }.sortedBy { it.createdAt })
                 } else {
                     if (response.code() == 500) {
                         if (attempt < maxRetries - 1) {

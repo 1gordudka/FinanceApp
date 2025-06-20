@@ -179,13 +179,15 @@ fun OutcomeHistoryScreenContent(
                             )
                         }
                         TextButton({
-                            onAction(
-                                OutcomeHistoryScreenAction.GetData(
-                                    startDate = formatMillisToDate(pickerState.selectedStartDateMillis!!),
-                                    endDate = formatMillisToDate(pickerState.selectedEndDateMillis!!)
+                            if (pickerState.selectedEndDateMillis != null && pickerState.selectedStartDateMillis != null){
+                                onAction(
+                                    OutcomeHistoryScreenAction.GetData(
+                                        startDate = formatMillisToDate(pickerState.selectedStartDateMillis!!),
+                                        endDate = formatMillisToDate(pickerState.selectedEndDateMillis!!)
+                                    )
                                 )
-                            )
-                            onAction(OutcomeHistoryScreenAction.OnCalendarClicked)
+                                onAction(OutcomeHistoryScreenAction.OnCalendarClicked)
+                            }
                         }) {
                             Text(
                                 "Готово",
