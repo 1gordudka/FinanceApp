@@ -10,6 +10,9 @@ class AccountRepositoryImpl(
 
     private var accountId: Int? = null
 
+    init {
+        Log.d("Repo", "AccountRepositoryImpl создан!")
+    }
 
     override suspend fun getAccountId(): ObtainAccountId {
         if (accountId != null) {

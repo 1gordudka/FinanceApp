@@ -49,7 +49,7 @@ fun SplashScreen(
 }
 
 
-private fun generateParticles(): List<EmojiParticle> {
+fun generateParticles(): List<EmojiParticle> {
     val screenWidth = 800f
     val screenHeight = 1800f
     val emojis = listOf("💸", "💰", "💵", "💲")

@@ -16,14 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
-import com.finance.articles.presentation.navigation.ArticlesFeatureScreens
-import com.finance.brief.presentation.navigation.BriefFeatureScreens
 import com.finance.common.network.utils.isInternetAvailable
 import com.finance.common.ui.components.FeatureTopBar
 import com.finance.common.ui.theme.FinanceAppTheme
-import com.finance.income.presentation.navigation.IncomeFeatureScreens
-import com.finance.outcome.presentation.navigation.OutcomeFeatureScreens
-import com.finance.settings.presentation.navigation.SettingsFeatureScreens
 import com.finance.splash.SplashScreen
 
 class MainActivity : ComponentActivity() {
@@ -34,11 +29,11 @@ class MainActivity : ComponentActivity() {
         val navigationComponent = appComponent.navigationComponentFactory.create()
 
         val order = listOf(
-            OutcomeFeatureScreens.navigationRoute,
-            IncomeFeatureScreens.navigationRoute,
-            BriefFeatureScreens.navigationRoute,
-            ArticlesFeatureScreens.navigationRoute,
-            SettingsFeatureScreens.navigationRoute
+            "outcome_feature_navigation_route",
+            "income_feature_navigation_route",
+            "brief_feature_navigation_route",
+            "articles_feature_navigation_route",
+            "settings_feature_navigation_route"
         )
 
         setContent {
@@ -46,16 +41,14 @@ class MainActivity : ComponentActivity() {
             val context = LocalContext.current
 
             LaunchedEffect(true) {
-                if (!context.isInternetAvailable()) {
+                if (!context.isInternetAvailable()){
                     Toast.makeText(context, "Нет интернета!", Toast.LENGTH_SHORT).show()
                 }
             }
 
             AppContent(
-                bottomBarItems = navigationComponent.bottomBarItems.toList()
-                    .sortedBy { order.indexOf(it.navigationRoute) },
-                featureNavigationApis = navigationComponent.featureNavigationApi.toList()
-                    .sortedBy { order.indexOf(it.navigationRoute) }
+                bottomBarItems = navigationComponent.bottomBarItems.toList().sortedBy { order.indexOf(it.navigationRoute) },
+                featureNavigationApis = navigationComponent.featureNavigationApi.toList().sortedBy { order.indexOf(it.navigationRoute) }
             )
         }
     }

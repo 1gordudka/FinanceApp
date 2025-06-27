@@ -36,10 +36,8 @@ fun FeatureTopBar(
             style = MaterialTheme.typography.titleLarge
         )
         Box(
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .padding(horizontal = 4.dp, vertical = 8.dp)
-        ) {
+            modifier = Modifier.align(Alignment.CenterEnd).padding(horizontal = 4.dp, vertical = 8.dp)
+        ){
             actionButton()
         }
     }

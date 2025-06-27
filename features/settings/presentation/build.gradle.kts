@@ -39,7 +39,6 @@ android {
 
 dependencies {
 
-    // Modules
     implementation(project(Modules.commonUi))
 
     implementation(project(Modules.commonNavigation))

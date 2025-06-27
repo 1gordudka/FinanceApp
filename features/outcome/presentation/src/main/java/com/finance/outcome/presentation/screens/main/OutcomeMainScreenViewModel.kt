@@ -26,6 +26,7 @@ class OutcomeMainScreenViewModel(
     )
 
     init {
+
         onAction(OutcomeMainScreenAction.OnScreenEntered)
     }
 
@@ -46,6 +47,7 @@ class OutcomeMainScreenViewModel(
     }
 
     private fun loadOutcomeData() {
+
         viewModelScope.launch(Dispatchers.IO) {
             updateState(OutcomeMainScreenState.Loading)
             val result = getTodayOutcomeDataUseCase.invoke(getTodayDate())
@@ -66,6 +68,7 @@ class OutcomeMainScreenViewModel(
             }
         }
     }
+
 }
 
 fun getTodayDate(): String {

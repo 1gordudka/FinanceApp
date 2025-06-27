@@ -34,6 +34,5 @@ android {
 
 dependencies {
 
-    // Modules
     implementation(project(Modules.featuresSettingsDomain))
 }

@@ -12,6 +12,8 @@ androidJunit = "1.2.1"
 espresso = "3.6.1"
 dagger = "2.55"
 coroutines = "1.8.0"
+appcompat = "1.7.1"
+material = "1.12.0"
 okhttp = "4.12.0"
 
 retrofit = "2.11.0"
@@ -49,6 +51,8 @@ dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", versi
 
 # Coroutines
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 # Retrofit
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
@@ -64,3 +68,4 @@ android-library = { id = "com.android.library", version.ref = "androidPlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 compose-compiler = {id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin"}
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
