@@ -34,8 +34,10 @@ android {
 
 dependencies {
 
+    // Modules
     implementation(project(Modules.featuresArticlesDomain))
 
+    // Retrofit
     implementation(libs.retrofit)
     implementation(libs.okhttp)
     api(libs.serialization.json)

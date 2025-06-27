@@ -1,20 +1,8 @@
 package com.finance.common.ui.theme
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 
-data class FinanceAppPaddings(
-    val extraSmall: Dp = 4.dp,
-    val small: Dp = 8.dp,
-    val standard: Dp = 12.dp,
-    val medium: Dp = 16.dp,
-    val mediumLarge: Dp = 18.dp,
-    val large: Dp = 22.dp,
-    val extraLarge: Dp = 26.dp
-)
+import androidx.compose.ui.graphics.Color
+
 
 data class FinanceAppColors(
     val primary: Color = Color(0xFF2AE881),
@@ -28,10 +16,7 @@ data class FinanceAppColors(
 )
 
 
-
-object FinanceAppTheme{
-
-    val paddings: FinanceAppPaddings = FinanceAppPaddings()
+object FinanceAppTheme {
 
     val colors: FinanceAppColors = FinanceAppColors()
 }
