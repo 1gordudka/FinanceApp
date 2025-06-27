@@ -67,8 +67,10 @@ fun AppContent(
         listOf("settings_feature_navigation_route", "articles_feature_navigation_route")
 
     val shouldShowFAB =
-        featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute
-                && currentDestinationParentRoute !in notFABRoutes }
+        featureNavigationApis.any {
+            it.startDestinationRoute == currentDestinationRoute
+                    && currentDestinationParentRoute !in notFABRoutes
+        }
                 || currentDestinationParentRoute == null && currentDestinationRoute != "splash"
 
     Scaffold(
@@ -149,7 +151,6 @@ private fun BottomBar(
                             restoreState = true
                         }
                     }
-
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = FinanceAppTheme.colors.primary,

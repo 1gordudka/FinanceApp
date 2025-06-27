@@ -20,8 +20,8 @@ import kotlinx.coroutines.launch
 
 
 class FinanceApp : Application(), IncomeFeatureComponentProvider, BriefFeatureComponentProvider,
-ArticlesFeatureComponentProvider, SettingsFeatureComponentProvider,
-OutcomeFeatureComponentProvider{
+    ArticlesFeatureComponentProvider, SettingsFeatureComponentProvider,
+    OutcomeFeatureComponentProvider {
 
 
     private var _appComponent: AppComponent? = null

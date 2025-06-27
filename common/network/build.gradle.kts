@@ -48,6 +48,7 @@ android {
 
 dependencies {
 
+    // Retrofit
     implementation(libs.retrofit)
     implementation(libs.okhttp)
 

@@ -50,6 +50,7 @@ android {
 
 dependencies {
 
+    // Modules
     api(project(Modules.featuresArticlesData))
     api(project(Modules.featuresArticlesDomain))
 

@@ -21,12 +21,14 @@ class IncomeHistoryScreenViewModel(
     val state = _state.receiveAsFlow().stateIn(
         viewModelScope, SharingStarted.Eagerly, IncomeHistoryScreenState.Loading
     )
-    
+
     init {
-        onAction(IncomeHistoryScreenAction.GetData(
-            startDate = "2025-06-01",
-            endDate = "2025-06-30"
-        ))
+        onAction(
+            IncomeHistoryScreenAction.GetData(
+                startDate = "2025-06-01",
+                endDate = "2025-06-30"
+            )
+        )
     }
 
     override fun onAction(action: IncomeHistoryScreenAction) {
@@ -65,7 +67,7 @@ class IncomeHistoryScreenViewModel(
             when (result) {
                 ObtainIncomeData.Error -> updateState(IncomeHistoryScreenState.Error)
                 is ObtainIncomeData.Success -> {
-                    if (result.transactions.isNotEmpty()){
+                    if (result.transactions.isNotEmpty()) {
                         updateState(
                             IncomeHistoryScreenState.Content(
                                 startDate = startDate,
@@ -76,7 +78,7 @@ class IncomeHistoryScreenViewModel(
                                 isDatePicker = false
                             )
                         )
-                    }else{
+                    } else {
                         updateState(
                             IncomeHistoryScreenState.Empty
                         )
