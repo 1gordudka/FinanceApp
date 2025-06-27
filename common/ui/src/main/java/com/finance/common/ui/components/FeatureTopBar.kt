@@ -13,7 +13,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.finance.common.ui.theme.FinanceAppColors
 import com.finance.common.ui.theme.FinanceAppTheme
-import com.finance.common.ui.theme.primary
 
 @Composable
 fun FeatureTopBar(
