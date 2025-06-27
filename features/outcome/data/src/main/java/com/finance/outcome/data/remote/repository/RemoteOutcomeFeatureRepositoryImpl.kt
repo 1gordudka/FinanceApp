@@ -15,7 +15,6 @@ class RemoteOutcomeFeatureRepositoryImpl(
     ): RemoteObtainOutcomeResult {
         val maxRetries = 3
         val retryDelayMillis = 2000L
-
         repeat(maxRetries) { attempt ->
             try {
                 val response = outcomeService.getTransactions(accountId, startDate, endDate)

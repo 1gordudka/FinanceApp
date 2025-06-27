@@ -60,13 +60,16 @@ fun AppContent(
         navController.currentBackStackEntryAsState().value?.destination?.parent?.route
 
     val shouldShowBottomBar =
-        featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute } || currentDestinationParentRoute == null && currentDestinationRoute != "splash"
+        featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute }
+                || currentDestinationParentRoute == null && currentDestinationRoute != "splash"
 
     val notFABRoutes =
         listOf("settings_feature_navigation_route", "articles_feature_navigation_route")
 
     val shouldShowFAB =
-        featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute && currentDestinationParentRoute !in notFABRoutes } || currentDestinationParentRoute == null && currentDestinationRoute != "splash"
+        featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute
+                && currentDestinationParentRoute !in notFABRoutes }
+                || currentDestinationParentRoute == null && currentDestinationRoute != "splash"
 
     Scaffold(
         bottomBar = {
