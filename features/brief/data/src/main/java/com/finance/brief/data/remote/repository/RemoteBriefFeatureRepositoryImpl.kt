@@ -1,11 +1,11 @@
 package com.finance.brief.data.remote.repository
 
 import android.util.Log
-import com.finance.brief.data.remote.models.CreateAccountRequest
+import com.finance.brief.data.remote.models.UpdateAccountRequest
 import com.finance.brief.data.remote.results.ObtainRemoteAccountInfo
 import com.finance.brief.data.remote.results.ObtainRemoteCreateAccountResult
+import com.finance.brief.data.remote.results.ObtainRemoteUpdateAccountResult
 import com.finance.brief.data.remote.service.BriefService
-import com.finance.brief.domain.results.ObtainAccountResult
 import kotlinx.coroutines.delay
 
 class RemoteBriefFeatureRepositoryImpl(
@@ -62,6 +62,35 @@ class RemoteBriefFeatureRepositoryImpl(
             }
         }
         return ObtainRemoteCreateAccountResult.Error
+    }
+
+    override suspend fun updateAccount(
+        id: Int,
+        updateAccountRequest: UpdateAccountRequest
+    ): ObtainRemoteUpdateAccountResult {
+        val maxRetries = 3
+        val retryDelayMillis = 2000L
+
+        repeat(maxRetries) { attempt ->
+            try {
+                val response = briefService.updateAccountInfo(id, updateAccountRequest)
+                if (response.isSuccessful) {
+                    return ObtainRemoteUpdateAccountResult.Success(response.body()!!)
+                } else {
+                    if (response.code() == 500) {
+                        if (attempt < maxRetries - 1) {
+                            delay(retryDelayMillis)
+                        }
+                    } else {
+                        return ObtainRemoteUpdateAccountResult.Error
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("ERROR", e.message.toString())
+                return ObtainRemoteUpdateAccountResult.Error
+            }
+        }
+        return ObtainRemoteUpdateAccountResult.Error
     }
 
 }

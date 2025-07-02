@@ -1,5 +1,6 @@
 package com.finance.brief.presentation.screens.main.di
 
+import com.finance.brief.domain.use_cases.ChangeAccountInfoUseCase
 import com.finance.brief.domain.use_cases.GetAccountUseCase
 import com.finance.brief.presentation.screens.main.BriefMainScreenViewModel
 import dagger.Module
@@ -13,8 +14,9 @@ class BriefScreenModule {
     @BriefScreenComponentScope
     @Provides
     fun provideBriefMainScreenViewModel(
-        getAccountUseCase: GetAccountUseCase
+        getAccountUseCase: GetAccountUseCase,
+        changeAccountInfoUseCase: ChangeAccountInfoUseCase
     ): BriefMainScreenViewModel =
-        BriefMainScreenViewModel(getAccountUseCase)
+        BriefMainScreenViewModel(getAccountUseCase, changeAccountInfoUseCase)
 }
 

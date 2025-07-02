@@ -1,6 +1,7 @@
 package com.finance.brief.presentation.screens.main.di
 
 import com.finance.brief.domain.repository.BriefFeatureRepository
+import com.finance.brief.domain.use_cases.ChangeAccountInfoUseCase
 import com.finance.brief.domain.use_cases.GetAccountUseCase
 import dagger.Module
 import dagger.Provides
@@ -13,4 +14,10 @@ class UseCasesModule {
     fun provideGetAccountUseCase(
         briefFeatureRepository: BriefFeatureRepository
     ): GetAccountUseCase = GetAccountUseCase(briefFeatureRepository)
+
+    @BriefScreenComponentScope
+    @Provides
+    fun provideChangeAccountUseCase(
+        briefFeatureRepository: BriefFeatureRepository
+    ): ChangeAccountInfoUseCase = ChangeAccountInfoUseCase(briefFeatureRepository)
 }

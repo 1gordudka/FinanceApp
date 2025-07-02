@@ -4,5 +4,6 @@ import com.finance.brief.domain.models.Balance
 
 val balance = Balance(
     formattedAmount = "-670 000",
-    currency = "₽"
+    currency = "₽",
+    name = "Мой счет"
 )

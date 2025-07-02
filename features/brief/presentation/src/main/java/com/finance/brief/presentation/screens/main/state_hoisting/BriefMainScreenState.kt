@@ -5,6 +5,10 @@ import com.finance.brief.domain.models.Balance
 sealed class BriefMainScreenState {
 
     data class Content(
+        val balance: Balance,
+    ) : BriefMainScreenState()
+
+    data class Update(
         val balance: Balance
     ) : BriefMainScreenState()
 
