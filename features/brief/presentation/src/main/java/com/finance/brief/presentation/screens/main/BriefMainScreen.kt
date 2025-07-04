@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
-import com.finance.brief.data.mock.balance
 import com.finance.brief.presentation.R
 import com.finance.brief.presentation.screens.main.state_hoisting.BriefMainScreenAction
 import com.finance.brief.presentation.screens.main.state_hoisting.BriefMainScreenState
@@ -63,7 +62,7 @@ fun BriefMainScreenContent(
     ) {
         if (state is BriefMainScreenState.Update) {
             ExtraTopBar(
-                name = balance.name,
+                name = state.balance.name,
                 firstAction = {
                     IconButton({
                         onAction(BriefMainScreenAction.OnExitEdit)
@@ -90,7 +89,7 @@ fun BriefMainScreenContent(
         } else {
             FeatureTopBar(
                 featureNameId = if (state is BriefMainScreenState.Content) null else R.string.brief_top_bar,
-                name = if (state is BriefMainScreenState.Content) balance.name else null,
+                name = if (state is BriefMainScreenState.Content) state.balance.name else null,
                 actionButton = {
                     if (state is BriefMainScreenState.Content){
                         IconButton({
