@@ -1,8 +1,10 @@
 package com.finance.brief.presentation.screens.main
 
 import androidx.lifecycle.viewModelScope
-import com.finance.brief.data.mock.balance
+import com.finance.brief.domain.models.Balance
 import com.finance.brief.domain.results.ObtainAccountResult
+import com.finance.brief.domain.results.ObtainChangeAccountResult
+import com.finance.brief.domain.use_cases.ChangeAccountInfoUseCase
 import com.finance.brief.domain.use_cases.GetAccountUseCase
 import com.finance.brief.presentation.screens.main.state_hoisting.BriefMainScreenAction
 import com.finance.brief.presentation.screens.main.state_hoisting.BriefMainScreenEffect
@@ -15,7 +17,8 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class BriefMainScreenViewModel(
-    private val getAccountUseCase: GetAccountUseCase
+    private val getAccountUseCase: GetAccountUseCase,
+    private val changeAccountInfoUseCase: ChangeAccountInfoUseCase
 ) :
     StatefulViewModel<BriefMainScreenState, BriefMainScreenEffect, BriefMainScreenAction>() {
 
@@ -32,6 +35,45 @@ class BriefMainScreenViewModel(
         when (action) {
             BriefMainScreenAction.OnScreenEntered -> {
                 loadAccount()
+            }
+
+            BriefMainScreenAction.OnEditButton -> {
+                viewModelScope.launch {
+                    updateState(
+                        BriefMainScreenState.Update(
+                            balance = (state.value as BriefMainScreenState.Content).balance
+                        )
+                    )
+                }
+            }
+
+            BriefMainScreenAction.OnExitEdit -> {
+                onAction(BriefMainScreenAction.OnScreenEntered)
+            }
+
+            is BriefMainScreenAction.OnUpdateInfo -> {
+                changeAccountInfo(action.balance)
+            }
+        }
+    }
+
+    private fun changeAccountInfo(balance: Balance) {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateState(BriefMainScreenState.Loading)
+            val result = changeAccountInfoUseCase.invoke(
+                balance.name,
+                balance.formattedAmount,
+                balance.currency
+            )
+            when (result) {
+                ObtainChangeAccountResult.Error -> updateState(BriefMainScreenState.Error)
+                is ObtainChangeAccountResult.Success -> {
+                    updateState(
+                        BriefMainScreenState.Content(
+                            balance = result.account
+                        )
+                    )
+                }
             }
         }
     }

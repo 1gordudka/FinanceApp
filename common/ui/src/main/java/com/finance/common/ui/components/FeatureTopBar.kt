@@ -11,12 +11,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.finance.common.ui.theme.FinanceAppColors
 import com.finance.common.ui.theme.FinanceAppTheme
 
 @Composable
 fun FeatureTopBar(
-    featureNameId: Int,
+    featureNameId: Int? = null,
+    name: String? = null,
     actionButton: @Composable () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -28,7 +28,7 @@ fun FeatureTopBar(
             .background(FinanceAppTheme.colors.primary)
     ) {
         Text(
-            text = stringResource(featureNameId),
+            text = if (featureNameId == null) name!! else stringResource(featureNameId),
             modifier = Modifier
                 .align(Alignment.Center)
                 .padding(vertical = 18.dp),
