@@ -34,7 +34,7 @@ import com.finance.common.ui.components.ExtraTopBar
 import com.finance.common.ui.ext.collectAsEffect
 import com.finance.common.ui.theme.FinanceAppTheme
 import com.finance.outcome.presentation.R
-import com.finance.outcome.presentation.screens.history.di.OutcomeHistoryScreenModule
+import com.finance.outcome.presentation.navigation.OutcomeFeatureScreens
 import com.finance.outcome.presentation.screens.history.state_hoisting.OutcomeHistoryScreenAction
 import com.finance.outcome.presentation.screens.history.state_hoisting.OutcomeHistoryScreenEffect
 import com.finance.outcome.presentation.screens.history.state_hoisting.OutcomeHistoryScreenState
@@ -57,6 +57,9 @@ fun OutcomeHistoryScreen(
         when (it) {
             OutcomeHistoryScreenEffect.NavigateBack -> {
                 navController.popBackStack()
+            }
+            is OutcomeHistoryScreenEffect.NavigateToEditOutcome -> {
+                navController.navigate(OutcomeFeatureScreens.createEditOutcomeRoute(it.transaction.id))
             }
         }
     }
@@ -122,7 +125,9 @@ fun OutcomeHistoryScreenContent(
                         amount = state.amount,
                         currency = state.currency,
                         transactions = state.allTransactions,
-                        onTransactionClick = { }
+                        onTransactionClick = { transaction ->
+                            onAction(OutcomeHistoryScreenAction.OnTransactionClicked(transaction))
+                        }
                     )
                 }
 

@@ -39,8 +39,24 @@ class IncomeMainScreenViewModel(
                 }
             }
 
+            IncomeMainScreenAction.OnAddIncomeClicked -> {
+                viewModelScope.launch {
+                    updateEffect(
+                        IncomeMainScreenEffect.NavigateToAddIncomeScreen
+                    )
+                }
+            }
+
             IncomeMainScreenAction.OnScreenEntered -> {
                 loadIncome()
+            }
+            
+            is IncomeMainScreenAction.OnTransactionClicked -> {
+                viewModelScope.launch {
+                    updateEffect(
+                        IncomeMainScreenEffect.NavigateToEditIncomeScreen(action.transaction.id)
+                    )
+                }
             }
         }
     }

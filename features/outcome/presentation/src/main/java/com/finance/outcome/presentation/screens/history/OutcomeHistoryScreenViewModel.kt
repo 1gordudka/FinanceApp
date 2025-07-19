@@ -2,17 +2,11 @@ package com.finance.outcome.presentation.screens.history
 
 import androidx.lifecycle.viewModelScope
 import com.finance.common.ui.state_hoisting.StatefulViewModel
-import com.finance.outcome.data.mock.allCategories
-import com.finance.outcome.data.mock.allOutcome
-import com.finance.outcome.data.mock.transactionsMockData
 import com.finance.outcome.domain.results.ObtainOutcomeData
 import com.finance.outcome.domain.use_cases.GetOutcomeDataUseCase
 import com.finance.outcome.presentation.screens.history.state_hoisting.OutcomeHistoryScreenAction
 import com.finance.outcome.presentation.screens.history.state_hoisting.OutcomeHistoryScreenEffect
 import com.finance.outcome.presentation.screens.history.state_hoisting.OutcomeHistoryScreenState
-import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainScreenAction
-import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainScreenEffect
-import com.finance.outcome.presentation.screens.main.state_hoisting.OutcomeMainScreenState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -60,6 +54,12 @@ class OutcomeHistoryScreenViewModel(
 
             is OutcomeHistoryScreenAction.GetData -> {
                 getOutcomeData(action.startDate, action.endDate)
+            }
+            
+            is OutcomeHistoryScreenAction.OnTransactionClicked -> {
+                viewModelScope.launch {
+                    updateEffect(OutcomeHistoryScreenEffect.NavigateToEditOutcome(action.transaction))
+                }
             }
         }
     }

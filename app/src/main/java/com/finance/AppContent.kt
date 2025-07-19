@@ -1,28 +1,20 @@
 package com.finance
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
-import androidx.compose.material3.FloatingActionButtonElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -44,7 +36,9 @@ import com.finance.brief.presentation.navigation.BriefFeatureScreens
 import com.finance.common.navigation.BottomBarItem
 import com.finance.common.navigation.FeatureNavigationApi
 import com.finance.common.ui.theme.FinanceAppTheme
+import com.finance.income.presentation.navigation.IncomeFeatureScreens
 import com.finance.navigation.AppNavGraph
+import com.finance.outcome.presentation.navigation.OutcomeFeatureScreens
 
 @Composable
 fun AppContent(
@@ -89,6 +83,12 @@ fun AppContent(
                     onClick = {
                         if (currentDestinationRoute == BriefFeatureScreens.startScreenDestination) {
                             navController.navigate(BriefFeatureScreens.CreateAccountScreen.route)
+                        }
+                        if (currentDestinationRoute == IncomeFeatureScreens.startScreenDestination) {
+                            navController.navigate(IncomeFeatureScreens.AddIncomeScreen.route)
+                        }
+                        if (currentDestinationRoute == OutcomeFeatureScreens.startScreenDestination) {
+                            navController.navigate(OutcomeFeatureScreens.AddOutcomeScreen.route)
                         }
                     },
                     containerColor = FinanceAppTheme.colors.primary,

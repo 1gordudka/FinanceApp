@@ -3,7 +3,6 @@ package com.finance.outcome.presentation.screens.main.states
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import com.finance.common.ui.components.GrayDivider
 import com.finance.outcome.domain.models.AllOutcome
 import com.finance.outcome.domain.models.OutcomeCategory
@@ -24,14 +23,16 @@ fun OutcomeMainScreenContentState(
             GrayDivider()
         }
         items(categories,
-            key = { it.id }) {
+            key = { it.id }) { transaction ->
             CategoryCard(
-                categoryName = it.categoryName,
-                categoryAmount = it.formattedAmount,
-                categoryCurrency = it.currency,
-                emoji = it.emoji,
-                comment = it.comment
-            ) { }
+                categoryName = transaction.categoryName,
+                categoryAmount = transaction.formattedAmount,
+                categoryCurrency = transaction.currency,
+                emoji = transaction.emoji,
+                comment = transaction.comment
+            ) { 
+                onAction(OutcomeMainScreenAction.OnTransactionClicked(transaction))
+            }
             GrayDivider()
         }
     }
