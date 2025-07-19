@@ -1,12 +1,13 @@
 package com.finance.income.presentation.screens.main
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -40,6 +41,12 @@ fun IncomeMainScreen(
             IncomeMainScreenEffect.NavigateToHistoryScreen -> {
                 navController.navigate(IncomeFeatureScreens.HistoryIncomeScreen.route)
             }
+            IncomeMainScreenEffect.NavigateToAddIncomeScreen -> {
+                navController.navigate(IncomeFeatureScreens.AddIncomeScreen.route)
+            }
+            is IncomeMainScreenEffect.NavigateToEditIncomeScreen -> {
+                navController.navigate(IncomeFeatureScreens.createEditIncomeRoute(it.transactionId))
+            }
         }
     }
 
@@ -64,17 +71,22 @@ fun IncomeMainScreenContent(
         FeatureTopBar(
             featureNameId = R.string.top_bar,
             actionButton = {
-                IconButton(
-                    {
-                        onAction(IncomeMainScreenAction.OnHistoryClicked)
-                    },
-                    modifier = Modifier.size(48.dp)
-                ) {
-                    Icon(
-                        painterResource(com.finance.common.ui.R.drawable.history_ic),
-                        "",
-                        tint = FinanceAppTheme.colors.onSurface
-                    )
+                Row(
+                    horizontalArrangement = Arrangement.End
+                ) {4
+                    
+                    IconButton(
+                        {
+                            onAction(IncomeMainScreenAction.OnHistoryClicked)
+                        },
+                        modifier = Modifier.size(48.dp)
+                    ) {
+                        Icon(
+                            painterResource(com.finance.common.ui.R.drawable.history_ic),
+                            "",
+                            tint = FinanceAppTheme.colors.onSurface
+                        )
+                    }
                 }
             },
             modifier = Modifier

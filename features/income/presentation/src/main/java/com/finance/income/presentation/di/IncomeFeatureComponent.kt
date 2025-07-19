@@ -1,8 +1,8 @@
 package com.finance.income.presentation.di
 
+import com.finance.income.presentation.screens.add_income.di.AddIncomeScreenComponent
 import com.finance.income.presentation.screens.history.di.IncomeHistoryScreenComponent
 import com.finance.income.presentation.screens.main.di.IncomeScreenComponent
-import dagger.Component
 import dagger.Subcomponent
 
 @IncomeFeatureComponentScope
@@ -20,4 +20,5 @@ interface IncomeFeatureComponent {
 
     val incomeMainScreenComponentFactory: IncomeScreenComponent.Factory
     val incomeHistoryScreenComponentFactory: IncomeHistoryScreenComponent.Factory
+    val addIncomeScreenComponentFactory: AddIncomeScreenComponent.Factory
 }

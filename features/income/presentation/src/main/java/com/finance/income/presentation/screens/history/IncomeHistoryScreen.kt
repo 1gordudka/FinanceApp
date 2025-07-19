@@ -1,7 +1,6 @@
 package com.finance.income.presentation.screens.history
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,9 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDefaults
-import androidx.compose.material3.DatePickerState
 import androidx.compose.material3.DateRangePicker
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -22,10 +19,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -39,7 +34,7 @@ import com.finance.common.ui.components.ExtraTopBar
 import com.finance.common.ui.ext.collectAsEffect
 import com.finance.common.ui.theme.FinanceAppTheme
 import com.finance.income.presentation.R
-import com.finance.income.presentation.screens.history.di.IncomeHistoryScreenModule
+import com.finance.income.presentation.navigation.IncomeFeatureScreens
 import com.finance.income.presentation.screens.history.state_hoisting.IncomeHistoryScreenAction
 import com.finance.income.presentation.screens.history.state_hoisting.IncomeHistoryScreenEffect
 import com.finance.income.presentation.screens.history.state_hoisting.IncomeHistoryScreenState
@@ -47,7 +42,6 @@ import com.finance.income.presentation.screens.history.states.IncomeHistoryScree
 import com.finance.income.presentation.screens.history.states.IncomeHistoryScreenEmptyState
 import com.finance.income.presentation.screens.history.states.IncomeHistoryScreenErrorState
 import com.finance.income.presentation.screens.history.states.IncomeHistoryScreenLoadingState
-import com.finance.income.presentation.screens.main.state_hoisting.IncomeMainScreenState
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -63,6 +57,9 @@ fun IncomeHistoryScreen(
         when (it) {
             IncomeHistoryScreenEffect.NavigateBack -> {
                 navController.popBackStack()
+            }
+            is IncomeHistoryScreenEffect.NavigateToEditIncome -> {
+                navController.navigate(IncomeFeatureScreens.createEditIncomeRoute(it.transaction.id))
             }
         }
     }
@@ -129,7 +126,9 @@ fun IncomeHistoryScreenContent(
                         amount = state.amount,
                         currency = state.currency,
                         transactions = state.allTransactions,
-                        onTransactionClick = { }
+                        onTransactionClick = { transaction ->
+                            onAction(IncomeHistoryScreenAction.OnTransactionClicked(transaction))
+                        }
                     )
                 }
 

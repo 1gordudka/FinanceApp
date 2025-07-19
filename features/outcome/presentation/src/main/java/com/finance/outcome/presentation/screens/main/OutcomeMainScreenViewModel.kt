@@ -42,6 +42,22 @@ class OutcomeMainScreenViewModel(
             OutcomeMainScreenAction.OnScreenEntered -> {
                 loadOutcomeData()
             }
+            
+            OutcomeMainScreenAction.OnAddOutcomeClicked -> {
+                viewModelScope.launch {
+                    updateEffect(
+                        OutcomeMainScreenEffect.NavigateToAddOutcomeScreen
+                    )
+                }
+            }
+            
+            is OutcomeMainScreenAction.OnTransactionClicked -> {
+                viewModelScope.launch {
+                    updateEffect(
+                        OutcomeMainScreenEffect.NavigateToEditOutcomeScreen(action.transaction.id)
+                    )
+                }
+            }
         }
     }
 

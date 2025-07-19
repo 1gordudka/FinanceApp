@@ -38,6 +38,12 @@ fun OutcomeMainScreen(
             OutcomeMainScreenEffect.NavigateToHistoryScreen -> {
                 navController.navigate(OutcomeFeatureScreens.HistoryOutcomeScreen.route)
             }
+            OutcomeMainScreenEffect.NavigateToAddOutcomeScreen -> {
+                navController.navigate(OutcomeFeatureScreens.AddOutcomeScreen.route)
+            }
+            is OutcomeMainScreenEffect.NavigateToEditOutcomeScreen -> {
+                navController.navigate(OutcomeFeatureScreens.createEditOutcomeRoute(it.transactionId))
+            }
         }
     }
 

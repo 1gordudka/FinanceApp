@@ -57,6 +57,12 @@ class IncomeHistoryScreenViewModel(
             is IncomeHistoryScreenAction.GetData -> {
                 getIncomeData(action.startDate, action.endDate)
             }
+            
+            is IncomeHistoryScreenAction.OnTransactionClicked -> {
+                viewModelScope.launch {
+                    updateEffect(IncomeHistoryScreenEffect.NavigateToEditIncome(action.transaction))
+                }
+            }
         }
     }
 

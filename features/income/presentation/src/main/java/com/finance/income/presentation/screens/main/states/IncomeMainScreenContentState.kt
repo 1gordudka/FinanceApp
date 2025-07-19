@@ -22,12 +22,14 @@ fun IncomeMainScreenContentState(
         item {
             GrayDivider()
         }
-        items(categories, key = { it.id }) {
+        items(categories, key = { it.id }) { transaction ->
             CategoryCard(
-                categoryName = it.categoryName,
-                categoryAmount = it.formattedAmount,
-                categoryCurrency = it.currency
-            ) { }
+                categoryName = transaction.categoryName,
+                categoryAmount = transaction.formattedAmount,
+                categoryCurrency = transaction.currency
+            ) { 
+                onAction(IncomeMainScreenAction.OnTransactionClicked(transaction))
+            }
             GrayDivider()
         }
     }
