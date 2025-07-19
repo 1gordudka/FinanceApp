@@ -1,3 +1,5 @@
+import jdk.tools.jlink.resources.plugins
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -37,6 +39,7 @@ dependencies {
     // Modules
     implementation(project(Modules.featuresOutcomeDomain))
     implementation((project(Modules.commonDomain)))
+    implementation(project(Modules.commonDatabase))
 
     implementation(project(Modules.commonNetwork))
 

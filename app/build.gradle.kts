@@ -1,3 +1,5 @@
+import jdk.tools.jlink.resources.plugins
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -50,6 +52,7 @@ dependencies {
     implementation(project(Modules.commonUi))
     implementation(project(Modules.commonNavigation))
     implementation(project(Modules.commonNetwork))
+    implementation(project(Modules.commonDatabase))
 
     implementation(project(Modules.featuresIncomeData))
     implementation(project(Modules.featuresIncomePresentation))
@@ -99,6 +102,10 @@ dependencies {
     // Dagger
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+
+    // WorkManager
+    implementation(libs.work.manager)
+    implementation(libs.startup.runtime)
 }
 
 kapt{

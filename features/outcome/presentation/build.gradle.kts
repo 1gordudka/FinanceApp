@@ -1,5 +1,5 @@
-import java.io.FileInputStream
-import java.util.Properties
+import jdk.tools.jlink.resources.plugins
+
 
 plugins {
     alias(libs.plugins.android.library)
@@ -45,6 +45,7 @@ dependencies {
     // Modules
     implementation(project(Modules.commonUi))
     implementation(project(Modules.commonNavigation))
+    implementation(project(Modules.commonDatabase))
 
     implementation(project(Modules.commonNetwork))
 
