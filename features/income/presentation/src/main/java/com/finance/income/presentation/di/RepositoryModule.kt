@@ -1,15 +1,13 @@
 package com.finance.income.presentation.di
 
-import com.features.income.data.remote.network.IncomeService
+import android.content.Context
 import com.features.income.data.remote.repository.RemoteIncomeFeatureRepository
-import com.features.income.data.remote.repository.RemoteOutcomeFeatureRepositoryImpl
 import com.features.income.data.repository.IncomeFeatureRepositoryImpl
+import com.finance.common.database.repository.OfflineTransactionRepository
 import com.finance.common.network.repository.AccountRepository
 import com.finance.income.domain.repository.IncomeFeatureRepository
 import dagger.Module
 import dagger.Provides
-import retrofit2.Retrofit
-import retrofit2.create
 
 @Module
 class RepositoryModule {
@@ -18,8 +16,13 @@ class RepositoryModule {
     @Provides
     fun provideIncomeFeatureRepository(
         accountRepository: AccountRepository,
-        remoteIncomeFeatureRepository: RemoteIncomeFeatureRepository
+        remoteIncomeFeatureRepository: RemoteIncomeFeatureRepository,
+        offlineTransactionRepository: OfflineTransactionRepository,
+        context: Context
     ): IncomeFeatureRepository = IncomeFeatureRepositoryImpl(
-        accountRepository, remoteIncomeFeatureRepository
+        accountRepository, 
+        remoteIncomeFeatureRepository,
+        offlineTransactionRepository,
+        context
     )
 }

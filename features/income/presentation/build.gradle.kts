@@ -1,3 +1,5 @@
+import jdk.tools.jlink.resources.plugins
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -43,6 +45,7 @@ dependencies {
     //Modules
     implementation(project(Modules.commonUi))
     implementation(project(Modules.commonNavigation))
+    implementation(project(Modules.commonDatabase))
 
     api(project(Modules.featuresIncomeData))
     api(project(Modules.featuresIncomeDomain))

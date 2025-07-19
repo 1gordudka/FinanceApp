@@ -45,6 +45,7 @@ fun SettingsMainScreenContent(
         when (state) {
             is SettingsMainScreenState.Content -> SettingsMainScreenContentState(
                 settings = state.settings,
+                syncStatus = state.syncStatus,
                 onAction = onAction
             )
 
