@@ -1,10 +1,5 @@
 package com.finance.settings.presentation.screens.main.components
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -14,19 +9,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.finance.common.ui.components.ListItem
-import com.finance.common.ui.theme.FinanceAppTheme
 import com.finance.settings.domain.SettingsButton
 import com.finance.settings.presentation.R
 
 @Composable
 fun SettingsButtonCard(
     settingsButton: SettingsButton,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onSwitchToggle: ((Boolean) -> Unit)? = null
 ) {
 
     ListItem(
@@ -54,17 +48,29 @@ fun SettingsButtonCard(
         trail = {
             when (settingsButton) {
                 is SettingsButton.SettingsButtonDefault -> {
-                    IconButton({}, Modifier.size(24.dp)) {
+                    IconButton(onClick, Modifier.size(24.dp)) {
                         Icon(painterResource(R.drawable.right_arrow), "")
                     }
                 }
 
                 is SettingsButton.SettingsButtonSwitch -> {
-                    Switch(settingsButton.enabled, {})
+                    Switch(
+                        checked = settingsButton.enabled, 
+                        onCheckedChange = { checked ->
+                            onSwitchToggle?.invoke(checked)
+                        }
+                    )
                 }
             }
         },
-        onClick = onClick,
+        onClick = {
+            when (settingsButton) {
+                is SettingsButton.SettingsButtonDefault -> onClick()
+                is SettingsButton.SettingsButtonSwitch -> {
+                    onSwitchToggle?.invoke(!settingsButton.enabled)
+                }
+            }
+        },
         modifier = Modifier.height(56.dp)
     )
 

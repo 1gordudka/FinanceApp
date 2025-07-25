@@ -1,9 +1,9 @@
 package com.finance.settings.presentation.screens.main
 
 import androidx.lifecycle.viewModelScope
-import com.finance.common.database.sync.SyncStatusManager
 import com.finance.common.ui.state_hoisting.StatefulViewModel
 import com.finance.settings.data.buttons.allSettingsButtons
+import com.finance.settings.domain.usecase.SettingsUseCases
 import com.finance.settings.presentation.screens.main.state_hoisting.SettingsMainScreenAction
 import com.finance.settings.presentation.screens.main.state_hoisting.SettingsMainScreenEffect
 import com.finance.settings.presentation.screens.main.state_hoisting.SettingsMainScreenState
@@ -15,36 +15,42 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SettingsMainScreenViewModel @Inject constructor(
-    private val syncStatusManager: SyncStatusManager
+    private val settingsUseCases: SettingsUseCases
 ) : StatefulViewModel<SettingsMainScreenState, SettingsMainScreenEffect, SettingsMainScreenAction>() {
 
     val state = combine(
         _state.receiveAsFlow(),
-        syncStatusManager.syncStatus
-    ) { screenState, syncStatus ->
+        settingsUseCases.getDarkTheme()
+    ) { screenState, isDarkTheme ->
         SettingsMainScreenState.Content(
-            settings = allSettingsButtons,
-            syncStatus = syncStatus
+            settings = allSettingsButtons.map { button ->
+                if (button is com.finance.settings.domain.SettingsButton.SettingsButtonSwitch && button.route == "theme") {
+                    button.copy(enabled = isDarkTheme)
+                } else {
+                    button
+                }
+            }
         )
     }.stateIn(
         viewModelScope, SharingStarted.Eagerly, SettingsMainScreenState.Content(
-            settings = allSettingsButtons,
-            syncStatus = com.finance.common.database.sync.SyncStatus()
+            settings = allSettingsButtons
         )
     )
-
-    init {
-        // Обновляем статус синхронизации при запуске
-        viewModelScope.launch {
-            syncStatusManager.updateSyncStatus()
-        }
-    }
 
     override fun onAction(action: SettingsMainScreenAction) {
         when (action) {
             is SettingsMainScreenAction.SyncClicked -> {
+                // Handle sync action if needed
+            }
+            is SettingsMainScreenAction.SettingClicked -> {
                 viewModelScope.launch {
-                    syncStatusManager.performManualSync()
+                    updateEffect(SettingsMainScreenEffect.NavigateToSetting(action.route))
+                }
+            }
+            is SettingsMainScreenAction.ThemeToggled -> {
+                viewModelScope.launch {
+                    settingsUseCases.setDarkTheme(action.isDark)
+                    settingsUseCases.performTabHaptic()
                 }
             }
         }

@@ -4,27 +4,24 @@ import com.finance.settings.domain.SettingsButton
 
 val allSettingsButtons = listOf(
     SettingsButton.SettingsButtonSwitch(
-        "Темная тема", false
+        "Темная тема", false, "theme"
     ),
     SettingsButton.SettingsButtonDefault(
-        "Основной цвет"
+        "Основной цвет", "primary_color_screen"
     ),
     SettingsButton.SettingsButtonDefault(
-        "Звуки"
+        "Хаптики", "haptics_screen"
     ),
     SettingsButton.SettingsButtonDefault(
-        "Хаптики"
+        "Код пароль", "pin_code_setup_screen"
     ),
     SettingsButton.SettingsButtonDefault(
-        "Код пароль"
+        "Синхронизация", "sync_frequency_screen"
     ),
     SettingsButton.SettingsButtonDefault(
-        "Синхронизация"
+        "Язык", "language_screen"
     ),
     SettingsButton.SettingsButtonDefault(
-        "Язык"
-    ),
-    SettingsButton.SettingsButtonDefault(
-        "О программе"
+        "О программе", "app_info_screen"
     )
 )

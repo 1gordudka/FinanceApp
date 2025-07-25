@@ -1,11 +1,12 @@
 package com.finance.settings.presentation.di
 
+import com.finance.settings.data.sync.SyncFrequencyManager
+import com.finance.settings.domain.usecase.SettingsUseCases
 import com.finance.settings.presentation.screens.main.di.SettingsScreenComponent
 import dagger.Subcomponent
 
-@SettingsFeatureComponentScope
 @Subcomponent(
-    modules = [SettingsFeatureModule::class]
+    modules = [SettingsFeatureModule::class, SettingsFeatureNavigationModule::class, SettingsFeatureDependenciesModule::class]
 )
 interface SettingsFeatureComponent {
 
@@ -15,4 +16,6 @@ interface SettingsFeatureComponent {
     }
 
     val settingsMainScreenComponentFactory: SettingsScreenComponent.Factory
+    val settingsUseCases: SettingsUseCases
+    val syncFrequencyManager: SyncFrequencyManager
 }

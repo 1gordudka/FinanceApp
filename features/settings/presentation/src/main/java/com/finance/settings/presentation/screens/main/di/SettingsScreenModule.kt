@@ -1,6 +1,6 @@
 package com.finance.settings.presentation.screens.main.di
 
-import com.finance.common.database.sync.SyncStatusManager
+import com.finance.settings.domain.usecase.SettingsUseCases
 import com.finance.settings.presentation.screens.main.SettingsMainScreenViewModel
 import dagger.Module
 import dagger.Provides
@@ -11,7 +11,7 @@ class SettingsScreenModule {
     @SettingsScreenComponentScope
     @Provides
     fun provideSettingsMainScreenViewModel(
-        syncStatusManager: SyncStatusManager
+        settingsUseCases: SettingsUseCases
     ): SettingsMainScreenViewModel =
-        SettingsMainScreenViewModel(syncStatusManager)
+        SettingsMainScreenViewModel(settingsUseCases)
 }
