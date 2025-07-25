@@ -1,5 +1,3 @@
-import jdk.tools.jlink.resources.plugins
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -106,6 +104,9 @@ dependencies {
     // WorkManager
     implementation(libs.work.manager)
     implementation(libs.startup.runtime)
+    
+    // Lottie Animation
+    implementation(libs.lottie.compose)
 }
 
 kapt{

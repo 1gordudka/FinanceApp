@@ -13,6 +13,7 @@ import com.finance.common.ui.components.FeatureTopBar
 import com.finance.common.ui.ext.collectAsEffect
 import com.finance.settings.presentation.R
 import com.finance.settings.presentation.screens.main.state_hoisting.SettingsMainScreenAction
+import com.finance.settings.presentation.screens.main.state_hoisting.SettingsMainScreenEffect
 import com.finance.settings.presentation.screens.main.state_hoisting.SettingsMainScreenState
 import com.finance.settings.presentation.screens.main.states.SettingsMainScreenContentState
 import com.finance.settings.presentation.screens.main.states.SettingsMainScreenEmptyState
@@ -25,7 +26,14 @@ fun SettingsMainScreen(
     viewModel: SettingsMainScreenViewModel,
 ) {
     val state by viewModel.state.collectAsState()
-    viewModel.effect.collectAsEffect { }
+    
+    viewModel.effect.collectAsEffect { effect ->
+        when (effect) {
+            is SettingsMainScreenEffect.NavigateToSetting -> {
+                navController.navigate(effect.route)
+            }
+        }
+    }
 
     SettingsMainScreenContent(
         state, viewModel::onAction
@@ -45,7 +53,6 @@ fun SettingsMainScreenContent(
         when (state) {
             is SettingsMainScreenState.Content -> SettingsMainScreenContentState(
                 settings = state.settings,
-                syncStatus = state.syncStatus,
                 onAction = onAction
             )
 

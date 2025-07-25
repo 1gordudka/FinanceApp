@@ -6,7 +6,6 @@ import com.finance.common.database.dao.TransactionDao
 import com.finance.common.database.demo.DemoDataManager
 import com.finance.common.database.repository.OfflineTransactionRepository
 import com.finance.common.database.repository.OfflineTransactionRepositoryImpl
-import com.finance.common.database.sync.SyncStatusManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -37,15 +36,6 @@ class DatabaseModule {
     @Provides
     fun provideWorkManager(context: Context): WorkManager {
         return WorkManager.getInstance(context)
-    }
-
-        @Singleton
-    @Provides
-    fun provideSyncStatusManager(
-        context: Context,
-        offlineRepository: OfflineTransactionRepository
-    ): SyncStatusManager {
-        return SyncStatusManager(context, offlineRepository)
     }
 
     @Singleton

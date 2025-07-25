@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    kotlin("kapt")
 }
 
 android {
@@ -36,4 +37,18 @@ dependencies {
 
     // Modules
     implementation(project(Modules.featuresSettingsDomain))
+    implementation(project(Modules.commonDatabase))
+
+    // DataStore
+    implementation(libs.datastore.preferences)
+    
+    // Security & Encryption
+    implementation(libs.security.crypto)
+    
+    // WorkManager
+    implementation(libs.work.manager)
+    
+    // Dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

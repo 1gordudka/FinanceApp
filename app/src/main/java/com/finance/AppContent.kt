@@ -43,7 +43,8 @@ import com.finance.outcome.presentation.navigation.OutcomeFeatureScreens
 @Composable
 fun AppContent(
     bottomBarItems: List<BottomBarItem>,
-    featureNavigationApis: List<FeatureNavigationApi>
+    featureNavigationApis: List<FeatureNavigationApi>,
+    settingsUseCases: com.finance.settings.domain.usecase.SettingsUseCases
 ) {
 
     val navController = rememberNavController()
@@ -55,7 +56,7 @@ fun AppContent(
 
     val shouldShowBottomBar =
         featureNavigationApis.any { it.startDestinationRoute == currentDestinationRoute }
-                || currentDestinationParentRoute == null && currentDestinationRoute != "splash"
+                || currentDestinationParentRoute == null && currentDestinationRoute != "splash" && currentDestinationRoute != "pin_verify"
 
     val notFABRoutes =
         listOf("settings_feature_navigation_route", "articles_feature_navigation_route")
@@ -73,7 +74,8 @@ fun AppContent(
                 BottomBar(
                     navController = navController,
                     currentDestinationParentRoute = currentDestinationParentRoute,
-                    items = bottomBarItems
+                    items = bottomBarItems,
+                    settingsUseCases = settingsUseCases
                 )
             }
         },
@@ -106,6 +108,7 @@ fun AppContent(
         AppNavGraph(
             navController = navController,
             featureNavigationApis = featureNavigationApis,
+            settingsUseCases = settingsUseCases,
             modifier = Modifier
                 .fillMaxSize()
                 .background(
@@ -130,6 +133,7 @@ private fun BottomBar(
     navController: NavController,
     currentDestinationParentRoute: String?,
     items: List<BottomBarItem>,
+    settingsUseCases: com.finance.settings.domain.usecase.SettingsUseCases,
     modifier: Modifier = Modifier,
 ) {
     NavigationBar(
@@ -143,6 +147,7 @@ private fun BottomBar(
                 selected = currentDestinationParentRoute == bottomBarItem.navigationRoute,
                 onClick = {
                     if (currentDestinationParentRoute != bottomBarItem.navigationRoute) {
+                        settingsUseCases.performTabHaptic()
                         navController.navigate(bottomBarItem.navigationRoute) {
                             popUpTo(navController.graph.findStartDestination().id) {
                                 saveState = true

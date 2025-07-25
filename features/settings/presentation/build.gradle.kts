@@ -1,5 +1,3 @@
-import jdk.tools.jlink.resources.plugins
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -43,7 +41,6 @@ dependencies {
 
     // Modules
     implementation(project(Modules.commonUi))
-    implementation(project(Modules.commonDatabase))
 
     implementation(project(Modules.commonNavigation))
 
@@ -64,4 +61,13 @@ dependencies {
     // Dagger
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+    
+    // DataStore
+    implementation(libs.datastore.preferences)
+    
+    // Security & Encryption
+    implementation(libs.security.crypto)
+    
+    // Lottie Animation
+    implementation(libs.lottie.compose)
 }
